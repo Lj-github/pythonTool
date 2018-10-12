@@ -1,33 +1,24 @@
 # -*- coding: utf-8 -*-
 # @Time    : 18/4/20 下午2:54
-# @Author  : myTool
-# @File    : ExcelTools.py
-# @Software: PyCharm
 
-# 库函数
-import os
 import xlrd
 from xlwt import Workbook
-import sys
-import shutil
+'''
+    excel 转list
+'''
 def excelToList(file):
     allTable = {}
-
     if file:
         print("<------  " + "file" + file + " begin search  " + " ------>")
         table_translate = xlrd.open_workbook(file)
         count = len(table_translate.sheets())
         allName= table_translate.sheet_names()
-
         for ins in range(0,count):
             allList = []
-            #sheet_translate = table_translate.sheet_by_index(ins)
             sheet_translate = table_translate.sheet_by_name(allName[ins])
             nrows_translate = sheet_translate.nrows
             ncols_translate = sheet_translate.ncols
-
             for j in range(nrows_translate):
-
                 translate = sheet_translate.row_values(j, 0, ncols_translate)
                 arrayitem = []
                 for st in translate :
@@ -36,6 +27,10 @@ def excelToList(file):
             allTable[allName[ins]] = allList
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allTable
+'''
+    excel 里面的 sheet  转list
+'''
+
 
 def excelToListByFileAndSheetName(file,sheetName):
     allList = []
@@ -43,16 +38,11 @@ def excelToListByFileAndSheetName(file,sheetName):
         print("<------  " + "file" + file + " begin search  " + " ------>")
         table_translate = xlrd.open_workbook(file)
         count = len(table_translate.sheets())
-
-
         # for ins in range(0,count):
         sheet_translate = table_translate.sheet_by_name(sheetName)
-
         nrows_translate = sheet_translate.nrows
         ncols_translate = sheet_translate.ncols
-
         for j in range(nrows_translate):
-
             translate = sheet_translate.row_values(j, 0, ncols_translate)
             arrayitem = []
             for st in translate :
@@ -61,42 +51,14 @@ def excelToListByFileAndSheetName(file,sheetName):
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allList
 
-
-#AllCCBLis  table { sheel :[list]}
-
-def makeExcel(AllCCBTabel,AllCCBLisName):
-
-    if AllCCBTabel:
-        w = Workbook()
-        for AllCCBName in AllCCBTabel:
-            AllCCBLis = AllCCBTabel[AllCCBName]
-            len = 0
-            allArr = AllCCBLis
-            ws = w.add_sheet(AllCCBName.decode('utf8'))
-            for i in allArr:
-                ind = 0
-                for j in i:
-                    # if i[0] == "":  # w为空 不执行
-                    #     print("break at because null" + str(i[1]))
-                    #     continue
-                    # if i[0].isdigit():  # 为数字 不执行
-                    #     print("break at because number" + str(i[1]))
-                    #     continue
-                    rstr = j
-                    if isinstance(j, str):
-                        rstr = j.decode('utf8')
-                    # print("id = " + str(len) + " " + str(rstr) + "  is add success")
-                    ws.write(len, ind, rstr)
-                    ind = ind + 1
-                    if ind == i.__len__():
-                        len = len + 1
-        print("save xls : " + AllCCBLisName)
-        w.save(AllCCBLisName)
+'''
+    AllCCBTabel ： table   {"sheet":[]} 形式  
+    xlsName ： excel name
+'''
 
 
 
-def makeExcel(AllCCBTabel,AllCCBLisName):
-
+def makeExcel(AllCCBTabel,xlsName):
     if AllCCBTabel:
         w = Workbook()
         for AllCCBName in AllCCBTabel:
@@ -107,12 +69,6 @@ def makeExcel(AllCCBTabel,AllCCBLisName):
             for i in allArr:
                 ind = 0
                 for j in i:
-                    # if i[0] == "":  # w为空 不执行
-                    #     print("break at because null" + str(i[1]))
-                    #     continue
-                    # if i[0].isdigit():  # 为数字 不执行
-                    #     print("break at because number" + str(i[1]))
-                    #     continue
                     rstr = j
                     if isinstance(j, str):
                         rstr = j
@@ -121,10 +77,8 @@ def makeExcel(AllCCBTabel,AllCCBLisName):
                     ind = ind + 1
                     if ind == i.__len__():
                         len = len + 1
-        print("save xls : " + AllCCBLisName)
-        w.save(AllCCBLisName)
-
-
+        print("save xls : " + xlsName)
+        w.save(xlsName)
 
 
 def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 arr
@@ -145,59 +99,3 @@ def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 a
                 news_index[i].append(id[i])
     return news_List
 
-
-
-def GetFileList(dir, fileList):
-    newDir = dir
-    if os.path.isfile(dir):
-        fileList.append(dir.decode('utf-8'))
-    elif os.path.isdir(dir):
-        for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
-            GetFileList(newDir, fileList)
-    return fileList
-
-
-def isNumber(str5):
-    try:
-        f = float(str5)
-        True
-    except ValueError:
-        return False
-
-
-
-def mkdir(path):
-    path = path.strip()
-    path = path.rstrip("\\")
-    isExists = os.path.exists(path)
-    if not isExists:
-        os.makedirs(path)
-        return True
-    else:
-        return False
-
-
-def copyfile(srcfile, dstfile):
-    if not os.path.isfile(srcfile):
-        print("%s not exist!" % (srcfile))
-    else:
-        fpath, fname = os.path.split(dstfile)
-        if not os.path.exists(fpath):
-            '''创建路径'''
-            mkdir(fpath)
-        '''复制文件'''
-        shutil.copyfile(srcfile, dstfile)
-        print("copy %s -> %s" % (srcfile, dstfile))
-
-
-
-def isNotIntAndNotFloat(num):
-    num = str(num)
-    if num.replace(".", '').isdigit():
-        if num.count(".") == 0:
-            return False
-        elif num.count(".") == 1:
-            return False
-    else:
-        return True
