@@ -13,7 +13,7 @@ import json
 import pymysql
 import shutil
 
-import foreignTools.cocosPikachuTools.ExcelTools as et
+import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
 
 projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/"
 
