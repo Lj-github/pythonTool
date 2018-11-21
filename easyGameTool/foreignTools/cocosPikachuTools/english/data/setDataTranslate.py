@@ -21,13 +21,13 @@ import xlwt
 # rootDataDir = '/Users/songbin/sanguo/aiweiyou_pokmon/RussionResources/资源表0512'
 # rootDataDir = '/Users/songbin/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512'
 rootDataDirList = {
-    2:"/Users/songbin/sanguo/aiweiyou_pokmon/资源表",
-    3:'/Users/songbin/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512',
-    4:'/Users/songbin/sanguo/aiweiyou_pokmon/RussionResources/资源表0512',
-    5:'/Users/songbin/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512',
-    6:'/Users/songbin/sanguo/aiweiyou_pokmon/GermanyResources/资源表0512',
+    2:"/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/资源表",
+    3:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512',
+    4:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/RussionResources/资源表0512',
+    5:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512',
+    6:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/GermanyResources/资源表0512',
     7:'',
-    8:'/Users/songbin/sanguo/aiweiyou_pokmon/VietnamResources/资源表0512',
+    8:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/VietnamResources/资源表0512',
 }
 '''Stone'''
 # rootDataDirList = {
@@ -42,7 +42,7 @@ rootDataDirList = {
 
 
 '''表名 所收集的翻译表目录'''
-translateDir = '/Users/songbin/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir'
+translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir'
 '''Stone'''
 # translateDir = '/Users/songbin/stone_age/stone_foreign/translateResource/translateDir'
 
@@ -50,7 +50,7 @@ translateDir = '/Users/songbin/sanguo/aiweiyou_pokmon/pika_foreign/translateReso
 translateTitleList = ['Id','colName','Chinese','English','Russion','French','Germany','TraditionalChinese','Vietnam']
 '''                  【0     1          2        3         4         5        6         7                     8】'''
 '''isReplaceNull 是否会连同空的表格一起填充（全覆盖式 true ；只覆盖有内容的 false）'''
-isReplaceNull = False
+isReplaceNull = True####
 
 '''translateIDx=2(从中文表内抽取对应中文填充在翻译收集表) 应该最后在执行，中文只是填充，不会增加行'''
 translateIDxList = [3,4,5,6,7,8,2]
@@ -70,7 +70,7 @@ traditionalChinese= ['traditionalChinese',8]
 vietnam= ['vietnam',9]
 
 '''策划翻译配置表'''
-translateConfigFile = '/Users/songbin/sanguo/aiweiyou_pokmon/pika_foreign/文本替换.xls'
+translateConfigFile = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/文本替换.xls'
 '''Stong'''
 # translateConfigFile = '/Users/songbin/stone_age/stone_foreign/文本替换.xls'
 '''表名，sheet，列名（；；；）'''
