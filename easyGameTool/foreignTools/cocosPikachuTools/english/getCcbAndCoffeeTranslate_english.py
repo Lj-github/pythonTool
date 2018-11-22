@@ -92,8 +92,10 @@ def makeCoffeeTranslate():
             itme = {}
             itme["Id"] = str(row[0])
             itme["text"] = str(row[1])
+            if itme["Id"] == 193:
+                print("err")
             if str(row[1]) == "None" and itme["Id"] != 193:
-                itme["text"] = str(row[2])
+                #itme["text"] = str(row[2])
                 itme["Id"]
                 print(itme["Id"])
                 print(itme["text"])
