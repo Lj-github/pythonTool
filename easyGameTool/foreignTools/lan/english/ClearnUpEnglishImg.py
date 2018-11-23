@@ -5,7 +5,7 @@
 
 
 
-import  foreignTools.tools.excelTool.ExcelTools  as excelTools
+import  easyGameTool.foreignTools.tools.excelTool.ExcelTools  as excelTools
 
 import json
 import os

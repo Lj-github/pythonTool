@@ -18,9 +18,11 @@ if not isLocal:
     host = '192.168.1.207'
     passwd = ''
 
+#波兰  生成 全部  待翻译的文件
+
 #img存放目的路径
 imgdistPth = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateImg'
-imgdistPth = '/Users/admin/Desktop/波兰翻译'
+imgdistPth = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/波兰翻译总/img'
 imgsourcePthList = [
     '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu',
     "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术图（英文）/",

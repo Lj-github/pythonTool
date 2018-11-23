@@ -78,7 +78,7 @@ def getFileStaNameByfileName(name,allList):
     return ""
 
 def createTxtByNameTxt(name,txt):
-    f = file(name, "a+")
+    f = open(name, "a+")
     if txt:
         f.write(txt)
     f.close()

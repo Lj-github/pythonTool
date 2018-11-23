@@ -15,6 +15,26 @@ import shutil
 
 import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
 
+
+
+# 是否为本地 数据库
+isLocal = True
+
+host = '127.0.0.1'
+port = 3306
+user = 'root'
+passwd = '123456'
+database = 'foreign-project'
+if not isLocal:
+    host = '192.168.1.207'
+    passwd = ''
+
+
+ccbSqlStr = "SELECT Id,Vietnamese,Chinese from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
+coffeeSalStr = "SELECT Id,Vietnamese,Chinese from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
+
+
+
 projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/"
 
 def createJsonFile(jsonObj,fileName):
@@ -26,12 +46,12 @@ def makeCcbTranslate():
     print("begin makeCcbTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host='192.168.1.207', port=3306, user='root', passwd='', db='foreign-project')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
     # SQL 查询语句
-    sql = "SELECT Id,Vietnamese,Chinese from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
+    sql = ccbSqlStr
     try:
         # 执行SQL语句
         cursor.execute(sql)
@@ -67,12 +87,12 @@ def makeCoffeeTranslate():
     print("begin makeCoffeeTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host='192.168.1.207', port=3306, user='root', passwd='', db='foreign-project')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
     # SQL 查询语句
-    sql = "SELECT Id,Vietnamese,Chinese from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
+    sql = coffeeSalStr
     try:
         # 执行SQL语句
         cursor.execute(sql)

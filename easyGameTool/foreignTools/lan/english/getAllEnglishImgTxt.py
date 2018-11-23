@@ -2,7 +2,7 @@
 # @Time    : 2018/7/20 下午8:54
 
 ''' 在英文版所有资源中放入txt 文件 '''
-import  foreignTools.tools.excelTool.ExcelTools as excelTools
+import  easyGameTool.foreignTools.tools.excelTool.ExcelTools as excelTools
 
 import json
 import os
@@ -68,7 +68,7 @@ if __name__ == '__main__':
         if not allObj.has_key(i):
             allObj[i] = alljoyfunTxtFileObj[i]
 
-    print "对比完成==>> 开始复制"
+    print("对比完成==>> 开始复制")
 
     for i in allObj:
         fpath, fname = os.path.split(i)
