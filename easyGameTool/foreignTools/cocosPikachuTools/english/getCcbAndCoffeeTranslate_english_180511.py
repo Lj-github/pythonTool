@@ -40,7 +40,7 @@ projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_en
 
 def createJsonFile(jsonObj, fileName):
     with open(fileName + ".json", 'w') as f:
-        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
+        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'),ensure_ascii=False)
 
 
 def makeCcbTranslate():

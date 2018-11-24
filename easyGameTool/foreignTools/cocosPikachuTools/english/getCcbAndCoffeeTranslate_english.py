@@ -34,7 +34,7 @@ coffeeSalStr = "SELECT Id,English,Chinese,FilePth from coffeeTranslate WHERE Id 
 
 def createJsonFile(jsonObj, fileName):
     with open(fileName + ".json", 'w') as f:
-        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
+        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'),ensure_ascii=False)
 def makeCcbTranslate():
     print("begin makeCcbTranslate")
     # 打开数据库连接

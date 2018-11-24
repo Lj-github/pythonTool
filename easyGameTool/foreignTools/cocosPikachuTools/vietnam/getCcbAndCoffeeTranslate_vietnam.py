@@ -40,13 +40,13 @@ projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vi
 def createJsonFile(jsonObj,fileName):
 
     with open(fileName + ".json", 'w') as f:
-        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
+        json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'),ensure_ascii=False)
 
 def makeCcbTranslate():
     print("begin makeCcbTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
@@ -74,7 +74,7 @@ def makeCcbTranslate():
         createJsonFile(obj,"ccbTranslate")
         ds = {}
         ds["ccb"] = listt
-        et.makeExcel(ds,"ccb.xls")
+        #et.makeExcel(ds,"ccb.xls")
 
     except:
         print("Error: unable to fetch data")
@@ -87,7 +87,7 @@ def makeCoffeeTranslate():
     print("begin makeCoffeeTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
