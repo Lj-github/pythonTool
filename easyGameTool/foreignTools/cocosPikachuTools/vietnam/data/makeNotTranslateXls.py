@@ -3,7 +3,7 @@ __author__ = 'songbin'
 翻译回来
 把对应翻译放在收集翻译表内 和 对应数据表内
 
-新的 翻译  回来时候   可以 直接替换   
+新的 翻译  回来时候   可以 直接替换  
 
 支持语言校准（表内同时存在新旧两列翻译，但新翻译无表头，且可为空）
 '''
@@ -21,10 +21,10 @@ import xlwt
 translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir'
 translateTitleList = ['Id','colName','Chinese','English','Russion','French','Germany','TraditionalChinese','Vietnam']
 '''                     0      1         2          3         4        5        6          7                   8'''
-translateIDx = 3
+translateIDx = 8
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Desktop/全版本配置数据翻译/全版本配置数据翻译' # 配置好  路径  就行  能直接  执行
+beTranslateDir = '/Users/admin/Desktop/全版本配置数据翻译/全版本配置数据翻译'
 # beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
 # beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''
@@ -333,6 +333,7 @@ try:
     for root, dirs, files in os.walk(beTranslateDir):
         for OneFileName in files:
             if (OneFileName.find('.xls') > 0 or OneFileName.find('.xlsx') > 0):
+                OneFileName = OneFileName.replace(" done", '')
                 makeSheepInfo(os.path.join(root, OneFileName),OneFileName)
                 print('OneFileName:',OneFileName)
 
