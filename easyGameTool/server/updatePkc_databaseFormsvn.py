@@ -18,7 +18,7 @@ def run():
     print("update pkc_gamedata")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='pkc_gamedata', charset='utf8')
+    db = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='pkc_gamedata', charset='utf8')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
@@ -71,5 +71,5 @@ if __name__ == '__main__':
     run()
 
 
-# mysql -h192.168.1.8 -uroot -proot gamedata < /Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_tables.sql
-# mysql -h192.168.1.8 -uroot -proot gamedata < /Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_update.sql
+# mysql -h127.0.0.1 -uroot -p123456 pkc_gamedata</Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_tables.sql
+# mysql -h127.0.0.1 -uroot -p123456 pkc_gamedata</Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_update.sql

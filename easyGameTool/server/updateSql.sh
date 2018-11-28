@@ -1,0 +1,2 @@
+mysql -h127.0.0.1 -uroot -p123456 pkc_gamedata</Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_tables.sql
+mysql -h127.0.0.1 -uroot -p123456 pkc_gamedata</Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/tools/exceltojson/sql/gamedata_update.sql
