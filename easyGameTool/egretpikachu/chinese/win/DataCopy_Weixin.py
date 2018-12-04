@@ -5,8 +5,15 @@
 # @Site    : 
 # @File    : DataCopy_Weixin.py
 # @Software: PyCharm
+
+# windows  可以只用 bat 文件
+
 import os
 import shutil
+
+msgFile = 'C:\\Users\DELL\Desktop\TsOut\\'
+protocolOutPath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\libs\ezModules\gameProtocol\libs\\"
+resourcePath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\\resource\data\\"
 
 def copyfile(srcfile, dstfile):
     if not os.path.isfile(srcfile):
@@ -34,7 +41,6 @@ def mkdir(path):
 
 
 
-
-
-
-
+copyfile(msgFile +'msgData.json' , resourcePath +'msgData.json')
+copyfile(msgFile +'GameProtocoObjlDesc.d.ts' , protocolOutPath +'GameProtocoObjlDesc.d.ts')
+copyfile(msgFile +'GameProtocolDesc.d.ts' , protocolOutPath +'GameProtocolDesc.d.ts')
