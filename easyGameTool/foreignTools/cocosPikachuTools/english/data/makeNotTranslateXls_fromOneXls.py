@@ -3,8 +3,10 @@ __author__ = 'songbin'
 翻译回来
 把对应翻译放在收集翻译表内 和 对应数据表内
 
-新的 翻译  回来时候   可以 直接替换   
- 这个是 从一堆文件里面  直接 替换的  文件夹里面 有  beizhu.xls  daoju.xls 等 
+新的 翻译  回来时候   可以 直接替换  
+
+translateDir  是为了 备注 其实每次都已经 备份了   
+ 这个是 从一个 xls  文件里面   里面有 一些 sheet  daoju  beizhu 等
 支持语言校准（表内同时存在新旧两列翻译，但新翻译无表头，且可为空）
 '''
 
@@ -15,6 +17,7 @@ import fileinput
 import re
 import xlrd
 import xlwt
+import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
 
 
 '''表名'''
@@ -22,11 +25,13 @@ translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sa
 translateTitleList = ['Id','colName','Chinese','English','Russion','French','Germany','TraditionalChinese','Vietnam']
 '''                     0      1         2          3         4        5        6          7                   8'''
 translateIDx = 3
+splitFile = "/slit/"
+beTranslateXls = '/Users/admin/Desktop/dsds/越南补充翻译.xlsx'
+fP,fn = os.path.split(beTranslateXls)
 
-beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Desktop/全版本配置数据翻译/全版本配置数据翻译' # 配置好  路径  就行  能直接  执行
-# beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
-# beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
+beTranslateDir = fP + splitFile
+
+
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''
 beTranslateIdx = [0,1,2,3,4,5,6,7,8,9]
 
@@ -323,16 +328,50 @@ def search(path, word):
             fp = search(fp, word)
             if fp:
                 return fp
+def mkdir(path):
+    path = path.strip()
+    path = path.rstrip("\\")
+    isExists = os.path.exists(path)
+    if not isExists:
+        os.makedirs(path)
+        return True
+    else:
+        return False
+
+def splitOneXlsToXlsFile(xlsFile):
+    if not xlsFile :
+        print("no xls file for split !!!")
+        return
+    dddd = et.excelToList(xlsFile)
+    for k in dddd:
+        for i in range(len((dddd[k])))   :
+            if i == 0:
+                for j in range(len((dddd[k][i]))):
+                    #todo  可以无限加  smjb
+                    dddd[k][i][j] = dddd[k][i][j].replace('序号','Id')
+                    dddd[k][i][j] = dddd[k][i][j].replace('英文', 'English')
+                    dddd[k][i][j] = dddd[k][i][j].replace('越南', 'Vietnam')
+    for k in dddd:
+        dat = {}
+        dat[k] = dddd[k]
+        fPath,fname = os.path.split(xlsFile)
+        saveXlsFile = fPath + splitFile + k + ".xls"
+        if not os.path.isdir(fPath + splitFile):
+            mkdir(fPath + splitFile)
+        et.makeExcel(dat,saveXlsFile)
 
 try:
     # for xlsname, itemTranslate in translateMap.items():
     #     fp = search(filwXlsOldPth,xlsname)
     #     if fp:
 
-    print('beTranslateDir')
+    #先把  一个 xls  拆开  为了 替换...
+
+    splitOneXlsToXlsFile(beTranslateXls)
     for root, dirs, files in os.walk(beTranslateDir):
         for OneFileName in files:
             if (OneFileName.find('.xls') > 0 or OneFileName.find('.xlsx') > 0):
+                OneFileName = OneFileName.replace(" done", '')
                 makeSheepInfo(os.path.join(root, OneFileName),OneFileName)
                 print('OneFileName:',OneFileName)
 
