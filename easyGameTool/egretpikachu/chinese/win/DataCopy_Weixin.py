@@ -10,10 +10,11 @@
 
 import os
 import shutil
+import easyGameTool.projectConfig as Config
 
-msgFile = 'C:\\Users\DELL\Desktop\TsOut\\'
-protocolOutPath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\libs\ezModules\gameProtocol\libs\\"
-resourcePath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\\resource\data\\"
+msgFile = Config.WIN10_SVN_PATH + 'aiweiyou_pokmon\pokmon_weixin\tools\微信\\'
+protocolOutPath= Config.WIN10_PROJECT_EGRET +  "SmartpikachuGame\libs\ezModules\gameProtocol\libs\\"
+resourcePath=Config.WIN10_PROJECT_EGRET + "\SmartpikachuGame\\resource\data\\"
 
 def copyfile(srcfile, dstfile):
     if not os.path.isfile(srcfile):
@@ -39,7 +40,7 @@ def mkdir(path):
     else:
         return False
 
-
+os.system("svn up " + msgFile)
 
 copyfile(msgFile +'msgData.json' , resourcePath +'msgData.json')
 copyfile(msgFile +'GameProtocoObjlDesc.d.ts' , protocolOutPath +'GameProtocoObjlDesc.d.ts')
