@@ -90,3 +90,6 @@ print(isinstance("5",int))
 
 print("dddddsss"[:-3])
 
+
+strFormid = "ccbList_{0}"
+print("cc'{0}'".format(5))

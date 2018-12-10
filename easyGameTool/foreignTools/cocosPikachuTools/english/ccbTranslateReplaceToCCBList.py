@@ -8,7 +8,7 @@ strFormid = "ccbList_{0}"
 import os
 import io
 
-import foreignTools.tools.excelTool.ExcelTools as et
+import easyGameTool.foreignTools.tools.excelTool.ExcelTools as et
 
 projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/tools/pikachuCCB/ccb"
 

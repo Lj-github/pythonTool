@@ -16,9 +16,19 @@ import json
 import pymysql
 import shutil
 import requests
-import foreignTools.tools.excelTool.ExcelTools as et
+import easyGameTool.foreignTools.tools.excelTool.ExcelTools as et
 
+# 是否为本地 数据库
+isLocal = True
 
+host = '127.0.0.1'
+port = 3306
+user = 'root'
+passwd = '123456'
+database = 'foreign-project'
+if not isLocal:
+    host = '192.168.1.207'
+    passwd = ''
 
 
 projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/app/static/"
@@ -32,7 +42,7 @@ def makeCcbTranslate():
     print("begin makeCcbTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host='192.168.1.207', port=3306, user='root', passwd='', db='foreign-project')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
@@ -65,7 +75,7 @@ def makeCoffeeTranslate():
     print("begin makeCoffeeTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host='192.168.1.207', port=3306, user='root', passwd='', db='foreign-project')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
@@ -80,20 +90,12 @@ def makeCoffeeTranslate():
         obj["RECORDS"] = []
 
         for row in results:
-            itme = {}
-            itme["Id"]= str(row[0])
-            itme["text"] = str(row[1])
+            # itme["text"] = str(row[1])
             if str(row[1]) == "None":
-                itme["text"] = str(row[2])
-                itme["Id"]
-                print(itme["Id"])
-                print(itme["text"])
-                if "Team" in str(row[3]):
-                    print(itme["text"])
-
-            obj["RECORDS"].append(itme)
-        createJsonFile(obj,"coffeeTranslate")
-
+                itme = [row[0],row[2]]
+                obj["RECORDS"].append(itme)
+        #createJsonFile(obj,"coffeeTranslate")
+        et.makeExcel(obj, "coffee.xls")
     except:
         print("Error: unable to fetch data")
 
@@ -129,7 +131,7 @@ def mkdir(path):
 
 if __name__ == '__main__':
     makeCcbTranslate()
-    #makeCoffeeTranslate()
+    makeCoffeeTranslate()
 
 
 

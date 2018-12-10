@@ -24,10 +24,6 @@ if not isLocal:
     host = '192.168.1.207'
     passwd = ''
 
-
-ccbSql = "UPDATE ccbTranslate SET English='{0}' WHERE Id={1}"
-coffeeSql ='UPDATE coffeeTranslate SET English="{0}" WHERE Id={1}'
-
 def createJsonFile(jsonObj,fileName):
     with open(fileName + ".json", 'w') as f:
         json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
@@ -44,10 +40,7 @@ def makeCcbTranslate():
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        # "cc{0}".format()
-        strFormid = "ccbList_{0}"
-
-        sql = ccbSql.format(vit,str(int(ID)))
+        sql = "UPDATE ccbTranslate SET English='" + vit + "' WHERE Id=" + str(int(ID))
         print(sql)
         try:
             # 执行SQL语句
@@ -73,7 +66,7 @@ def makeCoffeeTranslate():
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        sql = coffeeSql.format(vit, str(int(ID)))
+        sql = 'UPDATE coffeeTranslate SET English="' + vit + '" WHERE Id=' + str(int(ID))
         print(sql)
         try:
             # 执行SQL语句
@@ -114,8 +107,8 @@ def mkdir(path):
         return False
 
 
-if __name__ == '__main__':
-    makeCcbTranslate()
-    makeCoffeeTranslate()
+# if __name__ == '__main__':
+#     makeCcbTranslate()
+#     makeCoffeeTranslate()
 
 
