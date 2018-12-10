@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 path=$1
 if [ -z "${path}" ]
 then

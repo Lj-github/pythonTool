@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 rm -rf /Users/admin/Documents/ljworkspace/local/egret/SmartPikachu/SmartPikachuGit/SmartPikachu/SmartpikachuGame/dataBake/
 mkdir -p /Users/admin/Documents/ljworkspace/local/egret/SmartPikachu/SmartPikachuGit/SmartPikachu/SmartpikachuGame/dataBake/
