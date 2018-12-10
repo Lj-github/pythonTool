@@ -5,13 +5,12 @@
 #
 '''
     从svn 上面 通过md5  对比图片文件  不同 则复制到project 文件里面  并生成 plist 文件
-
 '''
 
 
 svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术（越南）/越南_0423"
-svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术（越南）/越南合作方翻译图/UI3011"
-projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english"
+svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术（越南）/越南合作方翻译图/0612"
+projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res"
 
 import os
 import json
@@ -143,6 +142,9 @@ if __name__ == '__main__':
     print("svn 更新 => " + svnPath)
     #os.system("svn up " + svnPath)
     print("svn 更新 完成 ")
+
+
+    #todo  应该使用最新的 文件 获取文件修改日期
 
 
     svnImgFile = GetFileListOnlyImg(svnPath,[])
