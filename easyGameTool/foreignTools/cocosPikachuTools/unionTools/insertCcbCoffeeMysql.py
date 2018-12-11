@@ -9,26 +9,21 @@ import json
 import pymysql
 import shutil
 import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
-
-ccbFile = "/Users/admin/Downloads/英文版翻译1210/ccb.xls"
-coffeeFile = "/Users/admin/Downloads/英文版翻译1210/coffee.xls"
-
+import easyGameTool.projectConfig as cf
 # 是否为本地 数据库
 isLocal = True
-host = '127.0.0.1'
-port = 3306
-user = 'root'
-passwd = '123456'
-database = 'foreign-project'
-if not isLocal:
-    host = '192.168.1.207'
-    passwd = ''
+host = cf.host
+port = cf.port
+user = cf.user
+passwd = cf.passwd
+database = cf.database
+
 
 def createJsonFile(jsonObj,fileName):
     with open(fileName + ".json", 'w') as f:
         json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
 
-def makeCcbTranslate():
+def makeCcbTranslate(ccbSql,ccbFile):
     print("begin makeCcbTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
@@ -40,7 +35,10 @@ def makeCcbTranslate():
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        sql = "UPDATE ccbTranslate SET English='" + vit + "' WHERE Id=" + str(int(ID))
+        # "cc{0}".format()
+        strFormid = "ccbList_{0}"
+
+        sql = ccbSql.format(vit,str(int(ID)))
         print(sql)
         try:
             # 执行SQL语句
@@ -55,7 +53,7 @@ def makeCcbTranslate():
     db.close()
     print("begin makeCcbTranslate success")
 
-def makeCoffeeTranslate():
+def makeCoffeeTranslate(coffeeSql,coffeeFile):
     print("begin makeCoffeeTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
@@ -66,7 +64,7 @@ def makeCoffeeTranslate():
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        sql = 'UPDATE coffeeTranslate SET English="' + vit + '" WHERE Id=' + str(int(ID))
+        sql = coffeeSql.format(vit, str(int(ID)))
         print(sql)
         try:
             # 执行SQL语句
@@ -105,10 +103,3 @@ def mkdir(path):
         return True
     else:
         return False
-
-
-# if __name__ == '__main__':
-#     makeCcbTranslate()
-#     makeCoffeeTranslate()
-
-
