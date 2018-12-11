@@ -35,10 +35,8 @@ def makeCcbTranslate(ccbSql,ccbFile):
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        # "cc{0}".format()
-        strFormid = "ccbList_{0}"
-        # if not et.isInt(ID):
-        #     continue
+        if item[0] == 'Id':
+            continue
 
         sql = ccbSql.format(vit,str(int(ID)))
         print(sql)
@@ -66,8 +64,8 @@ def makeCoffeeTranslate(coffeeSql,coffeeFile):
         ID = item[0]
         vit = item[2]
         # SQL 查询语句
-        # if not et.isInt(ID):
-        #     continue
+        if item[0] == 'Id':
+            continue
         sql = coffeeSql.format(vit, str(int(ID)))
         print(sql)
         try:
