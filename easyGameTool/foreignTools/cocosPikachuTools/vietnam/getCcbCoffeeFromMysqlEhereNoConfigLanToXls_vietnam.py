@@ -8,7 +8,7 @@
     # 可以分开 没有翻译的
 
 '''
-import easyGameTool.foreignTools.cocosPikachuTools.unionTools.getCcbCoffeeFromMysqlEhereNoConfigLan as nl
+import easyGameTool.foreignTools.cocosPikachuTools.unionTools.getCcbCoffeeFromMysqlEhereNoConfigLanToXls as nl
 if __name__ == '__main__':
     ccbSql = "SELECT Id,Vietnamese,Chinese from ccbTranslate WHERE Id IS NOT NULL and Id != 0"  # and Vietnamese is not NULL
     coffeeSql = "SELECT Id,Vietnamese,Chinese from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"  # and Vietnamese is not NULL
