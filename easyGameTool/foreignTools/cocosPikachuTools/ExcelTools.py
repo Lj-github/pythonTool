@@ -165,7 +165,12 @@ def isNumber(str5):
     except ValueError:
         return False
 
-
+def isInt(str5):
+    try:
+        f = int(str5)
+        True
+    except ValueError:
+        return False
 
 def mkdir(path):
     path = path.strip()

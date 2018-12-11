@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # 英文版 git
 pikachu_englishGit=/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/app/update/channel/file
 
