@@ -19,6 +19,8 @@ MACMINI_COCOS_PROJECT_ENGLISH_GIT = '/Users/admin/Documents/ljworkspace/local/co
 
 MACMINI_COCOS_PROJECT_YUENAN = '/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english'
 
+MACMINI_COCOS_ALLPSDPATH = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术图（英文）/所有的psd/'
+
 
 
 ##################################################################################################################
@@ -36,3 +38,17 @@ WIN10_PROJECT_EGRET = 'D:\work\easygame\client\SmartPikachu\\'
 
 
 ##################################################################################################################
+
+## 数据库配置
+
+isLocal = True
+host = '127.0.0.1'
+port = 3306
+user = 'root'
+passwd = '123456'
+database = 'foreign-project'
+if not isLocal:
+    host = '192.168.1.207'
+    passwd = ''
+
+
