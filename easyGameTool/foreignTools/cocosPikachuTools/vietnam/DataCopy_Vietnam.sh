@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 rm -rf /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res/data/
 mkdir -p /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res/data/

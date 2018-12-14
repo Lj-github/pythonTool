@@ -7,8 +7,7 @@ import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
 outFile = ''
 
 imgList = [
-    'UI_youjian_fujian.png',
-    'ppz_yousz1.png'
+    'zuq_czjx.png',
 ]
 
 if __name__ == '__main__':
