@@ -12,6 +12,7 @@ import easyGameTool.foreignTools.cocosPikachuTools.unionTools.getCcbAndCoffeeTra
 ccbSqlStr = "SELECT Id,Vietnamese,Chinese from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
 coffeeSalStr = "SELECT Id,Vietnamese,Chinese from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
 projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/"
+
 if __name__ == '__main__':
     gx.makeCcbTranslate(ccbSqlStr)
     gx.makeCoffeeTranslate(coffeeSalStr)

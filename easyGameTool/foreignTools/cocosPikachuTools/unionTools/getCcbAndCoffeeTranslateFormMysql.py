@@ -48,10 +48,12 @@ def makeCcbTranslate(ccbSqlStr):
             itme["text"] = str(row[1])
             if str(row[1]) == "None":
                 itme["text"] = str(row[2])
-                if "Team" in str(row[3]):
-                    print(itme["text"])
-                    print(itme["Id"])
+                # if "Team" in str(row[3]):
+                #     print(itme["text"])
+                    #print(itme["Id"])
             obj["RECORDS"].append(itme)
+
+        print("ddddddddd")
         createJsonFile(obj, "ccbTranslate")
     except:
         print("Error: unable to fetch data")
@@ -89,8 +91,8 @@ def makeCoffeeTranslate(coffeeSalStr):
                 itme["Id"]
                 print(itme["Id"])
                 print(itme["text"])
-                if "Team" in str(row[3]):
-                    print(itme["text"])
+                # if "Team" in str(row[3]):
+                #     print(itme["text"])
 
             obj["RECORDS"].append(itme)
         createJsonFile(obj, "coffeeTranslate")
