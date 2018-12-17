@@ -13,6 +13,10 @@ def hello_users(id):
     return "users: " + id
 
 
+@app.route('/test=<id>')   #http://127.0.0.1:5000/test=55
+def hello_test(id):
+    return "test: " + id
+
 
 @app.route('/', methods=['GET'])
 def index():
