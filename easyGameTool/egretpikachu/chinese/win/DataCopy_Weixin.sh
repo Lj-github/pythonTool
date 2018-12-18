@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 rm -rf /d/work/easygame/client/SmartPikachu/SmartpikachuGame/dataBake/
 mkdir -p /d/work/easygame/client/SmartPikachu/SmartpikachuGame/dataBake/
