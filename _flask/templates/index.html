@@ -13,18 +13,47 @@ test2
 <script>
 
     // 每秒发送 60 次 post 内容大致 是 200k  测试性能
-    var d =
+    var all = []
 
-    $.ajax({
-        type: "POST",
-        url: "http://0.0.0.0:9613/post/",
-        data: {username: "55", content: "5544"},
-        dataType: "json",
-        success: function (data) {
-           console.log(data)
+    function getStr() {
+        var str = ''
+        var eng = 'qwertyuiopasdfghjklzxcvbnm'.split("")
+        for (var i = 0; i < 200000; i++) {
+            str = eng[Math.floor(Math.random() * 26)] + str
         }
-    });
+        return str
+    }
 
+    var idx = 0
+
+    function post(id, cont) {
+        $.ajax({
+            type: "POST",
+            url: "http://0.0.0.0:9613/postSaveTxt/",
+            data: {username: idx, content: cont},
+            dataType: "json",
+            success: function (data) {
+                if (data.dd == "success") {
+                    all = all.splice(1, all.length)
+                    idx = idx + 1
+                    if (all.length > 0) {
+                        post(idx, all[0])
+                    } else {
+                        isBegin = false
+                    }
+                }
+            }
+        });
+    }
+
+    var isBegin = false
+    setInterval(function () {
+        all.push(getStr())
+        if (!isBegin) {
+            post(0, all[0])
+            isBegin = true
+        }
+    }, 33)
 
 </script>
 </body>
