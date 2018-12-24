@@ -26,3 +26,8 @@ def index_Iframe():
     return render_template('index.html')
 
 
+@app.route('/index2/', methods=['GET'])
+def index2():
+    return render_template('index2.html')
+
+
