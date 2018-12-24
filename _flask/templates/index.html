@@ -12,7 +12,7 @@ test2
 
 <script>
 
-    // 每秒发送 60 次 post 内容大致 是 200k  测试性能
+    // 每秒发送 60 次 post 内容大致 是 200k  测试性能  直接使用 post  方法  比socket  快 差不多 4 倍
     var all = []
 
     function getStr() {
@@ -53,7 +53,7 @@ test2
         });
     }
 
-    var FPS = 30 //使用30 fps 比较合适  直接能成功 todo 测试 两台电脑直接的 通讯
+    var FPS = 30 //使用30 fps 比较合适  直接能成功
 
     var isBegin = false
     var time = new Date()
@@ -75,6 +75,9 @@ test2
                 old = count
             }
         }, 1000 / FPS)
+    }
+    var stop = function () {
+        clearInterval(timer)
     }
 
 

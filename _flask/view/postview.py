@@ -27,7 +27,8 @@ def mydict():
 @app.route('/postSaveTxt/', methods=['POST'])
 def postSaveTxt():
     username = request.values['username']
-    content = x.decompress(request.values['content'])
+    #content = x.decompress(request.values['content'])
+    content =request.values['content']
     print('username  ' + username)
     with open("static/txt/" + username, 'w') as f:
         f.write(content)
