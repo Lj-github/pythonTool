@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script src="../static/lib/jquery-3.3.1.js"></script>
 </head>
 <body>
 test2
 
+
+<script>
+
+    // 每秒发送 60 次 post 内容大致 是 200k  测试性能
+    var d =
+
+    $.ajax({
+        type: "POST",
+        url: "http://0.0.0.0:9613/post/",
+        data: {username: "55", content: "5544"},
+        dataType: "json",
+        success: function (data) {
+           console.log(data)
+        }
+    });
+
+
+</script>
 </body>
 </html>

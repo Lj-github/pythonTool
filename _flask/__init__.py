@@ -2,6 +2,7 @@
 # @Time    : 2018/11/26 下午3:45
 from flask import Flask
 import logging
+from flask_cors import *
 
 # set up logging to file - see previous section for more details
 logging.basicConfig(level=logging.DEBUG,
@@ -20,4 +21,8 @@ console.setFormatter(formatter)
 logging.getLogger('').addHandler(console)
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
+CORS(app, resources=r'/*')
+
 from _flask import views
+from _flask.view import postview
