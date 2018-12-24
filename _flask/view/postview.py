@@ -4,7 +4,8 @@ from flask import render_template, request, make_response
 from _flask import app
 from flask import jsonify
 import json
-
+from _flask.lib import lzstring
+x = lzstring.LZString()
 
 @app.route('/post/', methods=['POST'])
 def postTest():
@@ -26,7 +27,7 @@ def mydict():
 @app.route('/postSaveTxt/', methods=['POST'])
 def postSaveTxt():
     username = request.values['username']
-    content = request.values['content']
+    content = x.decompress(request.values['content'])
     print('username  ' + username)
     with open("static/txt/" + username, 'w') as f:
         f.write(content)

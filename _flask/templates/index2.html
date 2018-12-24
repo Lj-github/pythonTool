@@ -5,6 +5,7 @@
     <title>Title</title>
 
     <script src="../static/lib/jquery-3.3.1.js"></script>
+    <script src="../static/lib/lz-string.js"></script>
 </head>
 <body>
 test2
@@ -18,7 +19,7 @@ test2
     function getStr() {
         var str = ''
         var eng = 'qwertyuiopasdfghjklzxcvbnm'.split("")
-        for (var i = 0; i < 6000000; i++) {
+        for (var i = 0; i < 60; i++) {
             str = eng[Math.floor(Math.random() * 26)] + str
         }
         return str
@@ -29,15 +30,34 @@ test2
     var localStr = getStr()
 
     function post(id, cont) {
-        delete all[0]
-        all = all.splice(1, all.length)
-        idx = idx + 1
-        if (all.length > 0) {
-            isBegin = true
-            post(idx, all[0])
-        } else {
-            isBegin = false
-        }
+
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.214:9613/postSaveTxt/",
+            data: {username: idx, content: cont},
+            dataType: "jsonp",
+            scriptCharset: 'utf-8',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (data) {
+                if (data.dd == "success") {
+                    delete all[0]
+                    all = all.splice(1, all.length)
+                    idx = idx + 1
+                    if (all.length > 0) {
+                        isBegin = true
+                        post(idx, all[0])
+                    } else {
+                        isBegin = false
+                    }
+                }
+            },
+            //回收 主动
+            complete: function (XHR, TS) {
+                XHR = null
+            }
+        });
+
+
     }
 
     var FPS = 1 //使用30 fps 比较合适  直接能成功 todo 测试 两台电脑直接的 通讯
@@ -51,7 +71,7 @@ test2
     var count = 0
     var begin = function () {
         timer = setInterval(function () {
-            all.push(getStr())
+            all.push(LZString.compress(getStr()))
             count++
             if (!isBegin) {
                 post(0, all[0])
