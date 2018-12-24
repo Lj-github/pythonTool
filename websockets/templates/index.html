@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../_flask/static/lib/lz-string.js"></script>
+</head>
+<body>
+
+
+<script>
+
+    //////todo  ！！！！！！！ websocekt  过慢  最多 1.5m  不行
+
+    var isConnected = false
+    var allMsg = []
+    var isBegin = false
+    var ws = {}
+    var idx = 0
+    var old = 0
+
+    ws.onopen = function () {
+        /* 与服务器端连接成功后，自动执行 */
+        console.log("链接成功")
+        isConnected = true
+    };
+
+    ws.onmessage = function (event) {
+        /* 服务器端向客户端发送数据时，自动执行 */
+        var response = event.data;
+
+        //{id: 1, idx: 0, txt: allMsg[0]}
+        var msg = JSON.parse(response)
+        //console.log("onmessage", msg.id)
+        if (msg.id === 2) {
+            if (msg.res === 1) {
+                delete allMsg[0]
+                allMsg = allMsg.splice(1, allMsg.length)
+                idx = idx + 1
+                if (allMsg.length > 0) {
+                    isBegin = true
+                    ws.sendMsg(JSON.stringify({id: 1, idx: idx, txt: allMsg[0]}))
+                } else {
+                    isBegin = false
+                }
+            }
+        }
+    };
+
+    ws.onclose = function (event) {
+        /* 服务器端主动断开连接时，自动执行 */
+        console.log("关闭连接")
+        clearInterval(timer)
+    };
+
+    ws.sendMsg = function (txt) {
+        //console.log("no txt find")
+        if (!txt) {
+            return
+        }
+        if (isConnected) {
+            socket.send(txt);
+            txt = undefined
+        }
+    }
+
+    function closeConn() {
+        socket.close();
+        console.log("关闭连接")
+    }
+
+    let host = '192.168.1.214'
+
+    //host = '192.168.199.159'//win8.1  home
+    function initSocket() {
+        window.socket = new WebSocket("ws://" + host + ":9999");
+        socket.onopen = ws.onopen
+        socket.onclose = ws.onclose
+        socket.onmessage = ws.onmessage
+    }
+
+    function getStr() {
+        var str = ''
+        var eng = 'qwertyuiopasdfghjklzxcvbnm'.split("")
+        for (var i = 0; i < 200000; i++) {
+            str = eng[Math.floor(Math.random() * 26)] + str
+        }
+        return str
+    }
+
+
+    var FPS = 30
+    var timer = undefined
+    var count = 0
+    var begin = function () {
+        initSocket()
+        timer = setInterval(function () {
+           //allMsg.push(LZString.compress(getStr()))
+            allMsg.push(getStr())
+            count++
+            if (!isBegin) {
+                ws.sendMsg(JSON.stringify({id: 1, idx: 0, txt: allMsg[0]}))
+            }
+            if (count % 60 === 0) {
+                console.log("运行时间 " + new Date().getSeconds() + " 秒")
+                console.log("数量差值 " + (count - old) + " 次数")
+                old = count
+            }
+        }, 1000 / FPS)
+    }
+    var stop = function () {
+        clearInterval(timer)
+        window.socket.close()
+    }
+</script>
+</body>
+</html>
