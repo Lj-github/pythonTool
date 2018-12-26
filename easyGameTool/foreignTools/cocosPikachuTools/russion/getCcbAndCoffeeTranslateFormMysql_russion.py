@@ -7,18 +7,18 @@
 
 
 '''
-#TODO 需要先 克隆一份代码  新的分支 着急吗？
-# import easyGameTool.foreignTools.cocosPikachuTools.unionTools.getCcbAndCoffeeTranslateFormMysql as gx
-#
-# projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/app/static/"
-# ccbSqlStr = "SELECT Id,English,Chinese,FilePth from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
-# coffeeSalStr = "SELECT Id,English,Chinese,FilePth from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
-#
-# if __name__ == '__main__':
-#     gx.makeCcbTranslate(ccbSqlStr)
-#     gx.makeCoffeeTranslate(coffeeSalStr)
-#     gx.copyfile("coffeeTranslate.json", projectFile + "res/coffeeTranslate.json")
-#     gx.copyfile("ccbTranslate.json", projectFile + "res/ccbTranslate.json")
+
+import easyGameTool.foreignTools.cocosPikachuTools.unionTools.getCcbAndCoffeeTranslateFormMysql as gx
+
+projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/app/static/"
+ccbSqlStr = "SELECT Id,Russion,Chinese,FilePth from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
+coffeeSalStr = "SELECT Id,Russion,Chinese,FilePth from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
+
+if __name__ == '__main__':
+    gx.makeCcbTranslate(ccbSqlStr)
+    gx.makeCoffeeTranslate(coffeeSalStr)
+    gx.copyfile("coffeeTranslate.json", projectFile + "res/coffeeTranslate.json")
+    gx.copyfile("ccbTranslate.json", projectFile + "res/ccbTranslate.json")
 
 
 

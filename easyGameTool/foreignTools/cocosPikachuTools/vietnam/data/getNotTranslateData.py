@@ -22,12 +22,12 @@ translateTitleList = ['Id','colName','Chinese','English','Russion','French','Ger
 '''translateTitleList 的idx'''
 translateIDx = 3
 '''是否需要带上英语翻译'''
-isNeedEnglish = False
+isNeedEnglish = True
 isGetTranslate = True  # 是否抽取 全部 数据
 isNeedAll = False
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/波兰翻译总/data'
+beTranslateDir = '/Users/admin/Desktop/越南翻译1226/data'
 # beTranslateDir = '/Users/songbin/Downloads/Language/越南/needBeTranslate-Russion-2018.11.01/needTranslateData'
 # beTranslateDir = '/Users/songbin/Downloads/Language/俄文/allTranslate-pika-Russion-18.11.12/dataTranslate'
 
