@@ -150,7 +150,7 @@ def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 a
 def GetFileList(dir, fileList):
     newDir = dir
     if os.path.isfile(dir):
-        fileList.append(dir.decode('utf-8'))
+        fileList.append(dir)
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
             newDir=os.path.join(dir,s)
