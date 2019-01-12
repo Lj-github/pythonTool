@@ -13,7 +13,7 @@ import re
 import xlrd
 import xlwt
 import sys
-import foreignTools.tools.excelTool.ExcelTools as et
+import easyGameTool.foreignTools.tools.excelTool.ExcelTools as et
 
 allXlsFile = "/Users/admin/Desktop/德语/10版数据翻译ccbcoffee"
 

@@ -6,7 +6,7 @@ import os
 import xlrd
 from xlwt import Workbook
 import sys
-import foreignTools.tools.excelTool.ExcelTools  as et
+import easyGameTool.foreignTools.tools.excelTool.ExcelTools  as et
 
 
 rootPath = os.path.dirname(os.path.realpath(__file__))
