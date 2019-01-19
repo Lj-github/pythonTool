@@ -21,7 +21,7 @@ translateTitleList = ['Id','colName','Chinese','English','Russion','French','Ger
 '''                     0     1          2        3         4          5      6            7                  8'''
 '''translateTitleList 的idx'''
 translateIDx = 3
-'''是否需要带上英语翻译'''
+'''是否需要带上英语翻译'''  # 为了 合并 旧的 先 提前
 isNeedEnglish = False
 isGetTranslate = True  # 是否抽取 全部 数据
 isNeedAll = False
