@@ -8,8 +8,8 @@
 
 import os
 import shutil
-
-msgFile = 'C:\\Users\DELL\Desktop\TsOut\\'
+import easyGameTool.projectConfig as Config
+msgFile = Config.WIN10_SVN_PATH + 'aiweiyou_pokmon\pokmon_weixin\\tools\微信\\ryq\\'
 protocolOutPath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\libs\ezModules\gameProtocol\libs\\"
 resourcePath="D:\work\easygame\client\SmartPikachu\SmartpikachuGame\\resource\data\\"
 
