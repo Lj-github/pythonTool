@@ -10,6 +10,8 @@ import xlrd
 from xlwt import Workbook
 import sys
 import shutil
+
+
 def excelToList(file):
     allTable = {}
 
@@ -17,11 +19,11 @@ def excelToList(file):
         print("<------  " + "file" + file + " begin search  " + " ------>")
         table_translate = xlrd.open_workbook(file)
         count = len(table_translate.sheets())
-        allName= table_translate.sheet_names()
+        allName = table_translate.sheet_names()
 
-        for ins in range(0,count):
+        for ins in range(0, count):
             allList = []
-            #sheet_translate = table_translate.sheet_by_index(ins)
+            # sheet_translate = table_translate.sheet_by_index(ins)
             sheet_translate = table_translate.sheet_by_name(allName[ins])
             nrows_translate = sheet_translate.nrows
             ncols_translate = sheet_translate.ncols
@@ -30,20 +32,20 @@ def excelToList(file):
 
                 translate = sheet_translate.row_values(j, 0, ncols_translate)
                 arrayitem = []
-                for st in translate :
+                for st in translate:
                     arrayitem.append(st)
                 allList.append(arrayitem)
             allTable[allName[ins]] = allList
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allTable
 
-def excelToListByFileAndSheetName(file,sheetName):
+
+def excelToListByFileAndSheetName(file, sheetName):
     allList = []
     if file and sheetName:
         print("<------  " + "file" + file + " begin search  " + " ------>")
         table_translate = xlrd.open_workbook(file)
         count = len(table_translate.sheets())
-
 
         # for ins in range(0,count):
         sheet_translate = table_translate.sheet_by_name(sheetName)
@@ -55,17 +57,16 @@ def excelToListByFileAndSheetName(file,sheetName):
 
             translate = sheet_translate.row_values(j, 0, ncols_translate)
             arrayitem = []
-            for st in translate :
+            for st in translate:
                 arrayitem.append(st)
             allList.append(arrayitem)
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allList
 
 
-#AllCCBLis  table { sheel :[list]}
+# AllCCBLis  table { sheel :[list]}
 
-def makeExcel(AllCCBTabel,AllCCBLisName):
-
+def makeExcel(AllCCBTabel, AllCCBLisName):
     if AllCCBTabel:
         w = Workbook()
         for AllCCBName in AllCCBTabel:
@@ -94,9 +95,7 @@ def makeExcel(AllCCBTabel,AllCCBLisName):
         w.save(AllCCBLisName)
 
 
-
-def makeExcel(AllCCBTabel,AllCCBLisName):
-
+def makeExcel(AllCCBTabel, AllCCBLisName):
     if AllCCBTabel:
         w = Workbook()
         for AllCCBName in AllCCBTabel:
@@ -125,17 +124,15 @@ def makeExcel(AllCCBTabel,AllCCBLisName):
         w.save(AllCCBLisName)
 
 
-
-
-def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 arr
+def listDeleteRepeatItem(list, index):  # index: [] 需要作为判断的列数 arr
     if not list or not index: return
     news_List = []
     news_index = []
-    for lis in range(0,index.__len__()):
+    for lis in range(0, index.__len__()):
         news_index.append([])
     for id in list:
         isHas = False
-        for i in range(0,index.__len__()):
+        for i in range(0, index.__len__()):
             if id[i] in news_index[i]:
                 isHas = True
         if not isHas:
@@ -146,14 +143,13 @@ def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 a
     return news_List
 
 
-
 def GetFileList(dir, fileList):
     newDir = dir
     if os.path.isfile(dir):
         fileList.append(dir.decode('utf-8'))
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
+            newDir = os.path.join(dir, s)
             GetFileList(newDir, fileList)
     return fileList
 
@@ -165,12 +161,14 @@ def isNumber(str5):
     except ValueError:
         return False
 
+
 def isInt(str5):
     try:
         f = int(str5)
         True
     except ValueError:
         return False
+
 
 def mkdir(path):
     path = path.strip()
@@ -196,7 +194,6 @@ def copyfile(srcfile, dstfile):
         print("copy %s -> %s" % (srcfile, dstfile))
 
 
-
 def isNotIntAndNotFloat(num):
     num = str(num)
     if num.replace(".", '').isdigit():
@@ -208,31 +205,28 @@ def isNotIntAndNotFloat(num):
         return True
 
 
-def getFileOnlyName(dir, type = [],fileList=[]):
+def getFileOnlyName(dir, type=[], fileList=[]):
     newDir = dir
     if os.path.isfile(dir):
-        fp,fn = os.path.split(dir)
+        fp, fn = os.path.split(dir)
         ft = fn.split(".").pop()
         if ft in type:
             fileList.append(fn)
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
-            getFileOnlyName(newDir,type = type ,fileList= fileList)
+            newDir = os.path.join(dir, s)
+            getFileOnlyName(newDir, type=type, fileList=fileList)
     return fileList
 
 
-
-
-def getFileName(dir, type = [],fileList=[]):
-    newDir = dir
+def getFileName(dir, type=[], fileList=[]):
     if os.path.isfile(dir):
-        fp,fn = os.path.split(dir)
+        fp, fn = os.path.split(dir)
         ft = fn.split(".").pop()
         if ft in type:
-            fileList.append(fn)
+            fileList.append(dir)
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
-            getFileOnlyName(newDir,type = type ,fileList= fileList)
+            newDir = os.path.join(dir, s)
+            getFileName(newDir, type=type, fileList=fileList)
     return fileList

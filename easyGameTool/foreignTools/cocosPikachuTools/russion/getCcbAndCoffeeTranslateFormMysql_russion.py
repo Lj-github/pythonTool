@@ -14,6 +14,7 @@ projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_ru
 ccbSqlStr = "SELECT Id,Russion,Chinese,FilePth from ccbTranslate WHERE Id IS NOT NULL and Id != 0"
 coffeeSalStr = "SELECT Id,Russion,Chinese,FilePth from coffeeTranslate WHERE Id IS NOT NULL and Id != 0"
 
+
 if __name__ == '__main__':
     gx.makeCcbTranslate(ccbSqlStr)
     gx.makeCoffeeTranslate(coffeeSalStr)
