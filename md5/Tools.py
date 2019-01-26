@@ -38,4 +38,15 @@ def get_file_md5(file_path):
     f.close()
     return myhash.hexdigest()
 
+# sha1 加密
+def CalcSha1(filepath):
+    with open(filepath, 'rb') as f:
+        sha1obj = hashlib.sha1()
+        sha1obj.update(f.read())
+        hash = sha1obj.hexdigest()
+        # print(hash[0:5])
+        return hash[0:5]
 
+
+
+print(CalcSha1("***.json"))

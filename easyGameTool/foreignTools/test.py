@@ -48,21 +48,7 @@ for i in dd:
 
 
 flag = 0
-st = "wwccbb"
-st = list(st)
-for s in st[:]:
-    print(st[:],"11")
-    print(s,"22")
-    print(st[0], "44")
-    del st[0]
 
-print(dd.get("sa"))
-
-ss = {}
-
-import sys
-def getg(df):
-    tt = os.path.getctime(ss)
 
 
 print("AAAhkhgkhjgkjhgkhjg54".lower())
@@ -90,6 +76,12 @@ print(isinstance("5",int))
 
 print("dddddsss"[:-3])
 
+a = "hello there"
 
-strFormid = "ccbList_{0}"
-print("cc'{0}'".format(5))
+
+print(a[2:4] )
+
+for i in range(0, 6):
+    print(i)
+
+
