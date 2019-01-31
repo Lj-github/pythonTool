@@ -172,7 +172,7 @@
                     .attr('class', 'line')
                     .attr('d', line(data));
 
-                var g = svg.selectAll('circle')
+                svg.selectAll('circle')
                     .data(data)
                     .enter()
                     .append('g')
