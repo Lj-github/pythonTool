@@ -9,8 +9,9 @@
 
 
 svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术图（俄文版）/越南_0423"
-svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术图（俄文版）/needTranslateImage_1211翻译20181214"
-projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/app/static/res"
+svnPath = "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/翻译美术图（俄文版）/0116"
+projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english"
+#projectFile = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/app/static/res"
 
 import os
 import json
