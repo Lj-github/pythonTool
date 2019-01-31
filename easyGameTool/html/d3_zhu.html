@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/d3/v5/d3.js"></script>
+    <link rel="stylesheet" href="css/d3.css">
+</head>
+<body>
+<div className="area-chart--simple">
+    <svg id="ffff"></svg>
+</div>
+
+<script>
+    var d3Tip = function () {
+        var e = d3
+
+        function t(e) {
+            w = p(e),
+                S = w.createSVGPoint(),
+                document.body.appendChild(x)
+        }
+
+        function n() {
+            return "n"
+        }
+
+        function r() {
+            return [0, 0]
+        }
+
+        function i() {
+            return " "
+        }
+
+        function o() {
+            var e = v();
+            return {
+                top: e.n.y - x.offsetHeight,
+                left: e.n.x - x.offsetWidth / 2
+            }
+        }
+
+        function a() {
+            var e = v();
+            return {
+                top: e.s.y,
+                left: e.s.x - x.offsetWidth / 2
+            }
+        }
+
+        function s() {
+            var e = v();
+            return {
+                top: e.e.y - x.offsetHeight / 2,
+                left: e.e.x
+            }
+        }
+
+        function u() {
+            var e = v();
+            return {
+                top: e.w.y - x.offsetHeight / 2,
+                left: e.w.x - x.offsetWidth
+            }
+        }
+
+        function l() {
+            var e = v();
+            return {
+                top: e.nw.y - x.offsetHeight,
+                left: e.nw.x - x.offsetWidth
+            }
+        }
+
+        function c() {
+            var e = v();
+            return {
+                top: e.ne.y - x.offsetHeight,
+                left: e.ne.x
+            }
+        }
+
+        function f() {
+            var e = v();
+            return {
+                top: e.sw.y,
+                left: e.sw.x - x.offsetWidth
+            }
+        }
+
+        function h() {
+            var e = v();
+            return {
+                top: e.se.y,
+                left: e.e.x
+            }
+        }
+
+        function d() {
+            var t = e.select(document.createElement("div"));
+            return t.style("position", "absolute").style("top", 0).style("opacity", 0).style("pointer-events", "none").style("box-sizing", "border-box"),
+                t.node()
+        }
+
+        function p(e) {
+            return e = e.node(),
+                "svg" === e.tagName.toLowerCase() ? e : e.ownerSVGElement
+        }
+
+        function m() {
+            return null === x && (x = d(),
+                document.body.appendChild(x)),
+                e.select(x)
+        }
+
+        function v() {
+            for (var t = C || e.event.target; "undefined" === typeof t.getScreenCTM && "undefined" === t.parentNode;)
+                t = t.parentNode;
+            var n = {}
+                , r = t.getScreenCTM()
+                , i = t.getBBox()
+                , o = i.width
+                , a = i.height
+                , s = i.x
+                , u = i.y;
+            return S.x = s,
+                S.y = u,
+                n.nw = S.matrixTransform(r),
+                S.x += o,
+                n.ne = S.matrixTransform(r),
+                S.y += a,
+                n.se = S.matrixTransform(r),
+                S.x -= o,
+                n.sw = S.matrixTransform(r),
+                S.y -= a / 2,
+                n.w = S.matrixTransform(r),
+                S.x += o,
+                n.e = S.matrixTransform(r),
+                S.x -= o / 2,
+                S.y -= a / 2,
+                n.n = S.matrixTransform(r),
+                S.y += a,
+                n.s = S.matrixTransform(r),
+                n
+        }
+
+        function g(e) {
+            return "function" === typeof e ? e : function () {
+                return e
+            }
+        }
+
+        var y = n
+            , b = r
+            , _ = i
+            , x = d()
+            , w = null
+            , S = null
+            , C = null;
+
+
+        t.show = function () {
+            var e = Array.prototype.slice.call(arguments);
+            e[e.length - 1] instanceof SVGElement && (C = e.pop());
+            var n, r = _.apply(this, e), i = b.apply(this, e), o = y.apply(this, e), a = m(), s = E.length,
+                u = document.documentElement.scrollTop || document.body.scrollTop,
+                l = document.documentElement.scrollLeft || document.body.scrollLeft;
+            for (a.html(r).style("opacity", 1).style("pointer-events", "all"); s--;)
+                a.classed(E[s], !1);
+            return n = O.get(o).apply(this),
+                a.classed(o, !0).style("top", n.top + i[0] + u + "px").style("left", n.left + i[1] + l + "px"),
+                t
+        }
+            ,
+            t.hide = function () {
+                return m().style("opacity", 0).style("pointer-events", "none"),
+                    t
+            }
+            ,
+            t.attr = function (n, r) {
+                if (arguments.length < 2 && "string" === typeof n)
+                    return m().attr(n);
+                var i = Array.prototype.slice.call(arguments);
+                return e.selection.prototype.attr.apply(m(), i),
+                    t
+            }
+            ,
+            t.style = function (n, r) {
+                if (arguments.length < 2 && "string" === typeof n)
+                    return m().style(n);
+                var i = Array.prototype.slice.call(arguments);
+                return e.selection.prototype.style.apply(m(), i),
+                    t
+            }
+            ,
+            t.direction = function (e) {
+                return arguments.length ? (y = null == e ? e : g(e),
+                    t) : y
+            }
+            ,
+            t.offset = function (e) {
+                return arguments.length ? (b = null == e ? e : g(e),
+                    t) : b
+            }
+            ,
+            t.html = function (e) {
+                return arguments.length ? (_ = null == e ? e : g(e),
+                    t) : _
+            }
+            ,
+            t.destroy = function () {
+                return x && (m().remove(),
+                    x = null),
+                    t
+            }
+        ;
+        var O = e.map({
+            n: o,
+            s: a,
+            e: s,
+            w: u,
+            nw: l,
+            ne: c,
+            sw: f,
+            se: h
+        })
+            , E = O.keys();
+        return t
+    }
+
+
+    const containerWidth = document.body.clientWidth
+    const data = JSON.parse('[{"letter":"一","frequency":0.08167},{"letter":"二","frequency":0.13492},{"letter":"三","frequency":0.02782},{"letter":"四","frequency":0.04253},{"letter":"五","frequency":0.12702},{"letter":"六","frequency":0.02288},{"letter":"日","frequency":0.22288}]');
+    const margin = {top: 80, right: 20, bottom: 30, left: 60};
+    const width = containerWidth - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+    let chart = d3.select(document.getElementById('ffff')).attr("width", width + margin.left + margin.right).attr("height", height + margin.top + margin.bottom);
+
+    let x = d3.scaleBand().rangeRound([0, width]).padding(0.1).domain(data.map(function (d) {
+        return d.letter;
+    })); // 设置x轴
+    let y = d3.scaleLinear().rangeRound([height, 0]).domain([0, d3.max(data, function (d) {
+        return d.frequency;
+    })]); // 设置y轴
+
+    const barWidth = (width / data.length) * 0.9; // 用于绘制每条柱
+    const stepArray = d3.ticks(0, d3.max(data, d => d.frequency), 10); // 用于生成背景柱
+    const colors = ['#ccc', '#ddd']; // 用于生成背景柱
+
+
+    let g = chart.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // 设最外包层在总图上的相对位置
+    /*
+    let tip = g.append('g').attr('class', 'd3-tip') // 设置tip
+        .offset([-10, 0])
+        .html(function (d) {
+            return "<strong>星期" + d.letter + "<br>空置率:</strong> <span style='color:#ffeb3b'>" + (d.frequency * 100).toFixed(2) + "%</span>";
+        });
+    chart.call(tip);*/
+
+    let tip = d3Tip() // 设置tip
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function (d) {
+            return "<strong>星期" + d.letter + "<br>空置率:</strong> <span style='color:#ffeb3b'>" + (d.frequency * 100).toFixed(2) + "%</span>";
+        });
+    chart.call(tip);
+
+
+    g.append("g") // 设置x轴
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    g.append("g")// 设置y轴
+        .attr("class", "axis axis--y")
+        .call(d3.axisLeft(y).ticks(10, '%'))
+        .append("text")
+        .attr("y", -16)
+        .attr("dy", ".71em")
+        .style("text-anchor", "middle")
+        .style("fill", "#fff")
+        .text("空置率 (%)");
+
+    g.append("g")// 设置背景柱
+        .attr("class", "bar--bg-bar")
+        .selectAll('rect')
+        .data(d3.range(stepArray.length - 1))
+        .enter()
+        .append('rect')
+        .attr('stroke', 'none')
+        .attr('stroke-width', 0)
+        .attr('fill', function (d, i) {
+            return colors[i % 2];
+        })
+        .attr('x', 1)
+        .attr('width', width)
+        .attr('height', function (d, i) {
+            return y(stepArray[i]) - y(stepArray[i + 1]);
+        })
+        .attr('y', function (d, i) {
+            return y(((i + 1) * stepArray[1]))
+        });
+
+    g.selectAll(".bar")// 画柱图
+        .data(data)
+        .enter().append("rect")
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
+        .attr("class", "bar")
+        .attr("fill", "#8a2be2")
+        .attr("x", function (d) {
+            return x(d.letter);
+        })
+        .attr("y", height) // 控制动画由下而上
+        .attr("width", x.bandwidth())
+        .attr("height", 0) // 控制动画由下而上
+        .transition()
+        .duration(200)
+        .ease(d3.easeBounceInOut)
+        .delay(function (d, i) {
+            return i * 200;
+        })
+        .attr("y", function (d) {
+            return y(d.frequency);
+        })
+        .attr("height", function (d) {
+            return height - y(d.frequency);
+        });
+
+    g.append('g')// 输出柱图上的数值
+        .attr('class', 'bar--text')
+        .selectAll('text')
+        .data(data)
+        .enter()
+        .append('text')
+        .attr('fill', 'orange')
+        .attr('font-size', '14px')
+        .attr('text-anchor', 'middle')
+        .attr('x', function (d, i) {
+            return x(d.letter);
+        })
+        .attr('y', function (d) {
+            return y(d.frequency);
+        })
+        .attr('dx', barWidth / 2)
+        .attr('dy', '1em')
+        .text(function (d) {
+            return (d.frequency * 100).toFixed(2) + '%';
+        })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+
+    chart.append('g')// 输出标题
+        .attr('class', 'bar--title')
+        .append('text')
+        .attr('fill', '#000')
+        .attr('font-size', '16px')
+        .attr('font-weight', '700')
+        .attr('text-anchor', 'middle')
+        .attr('x', containerWidth / 2)
+        .attr('y', 20)
+        .text('本周酒店房间空置率');
+
+</script>
+</body>
+</html>
