@@ -27,6 +27,7 @@ beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/
 beTranslateDir = '/Users/admin/Desktop/pikachu俄文版/更新/POK_Translation_2018-12-07/needTranslateData' # 配置好  路径  就行  能直接  执行
 # beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
 # beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
+beTranslateDir = '/Users/admin/Desktop/pikachu俄文版/bug反馈19/data'
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''
 beTranslateIdx = [0,1,2,3,4,5,6,7,8,9]
 
