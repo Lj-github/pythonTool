@@ -230,3 +230,21 @@ def getFileName(dir, type=[], fileList=[]):
             newDir = os.path.join(dir, s)
             getFileName(newDir, type=type, fileList=fileList)
     return fileList
+
+
+"""判断一个unicode是否是汉字"""
+def is_chinese(uchar):
+    if uchar >= u'\u4e00' and uchar <= u'\u9fa5':
+        return True
+    else:
+        return False
+
+def isIncludeChinese(sText):
+    if isinstance(sText, str):
+        for uchar in sText:
+            if is_chinese(uchar):
+                return True
+        return False
+    else:
+        return False
+

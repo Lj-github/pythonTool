@@ -2,7 +2,7 @@
 #直接 从 英文版里面 覆盖 需要 提前 同步 至 英文版
 
 #是否更新coffee
-isUpdateCoffee=true
+isUpdateCoffee=false
 
 
 rm -rf /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/tools/pikachuCCB/ccb/
@@ -12,6 +12,7 @@ mkdir -p /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_
 engLishPrp=/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/
 appPath=/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/
 if $isUpdateCoffee = true ;then
+    echo 'copy  coffee begin'
     rm -rf /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/app/static/coffee/
     mkdir -p /Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_russion_update/pikachu_english/app/static/coffee/
     cp -r -f $engLishPrp/app/static/coffee/ $appPath/app/static/coffee/
