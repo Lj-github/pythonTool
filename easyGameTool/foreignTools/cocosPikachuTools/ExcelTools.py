@@ -233,11 +233,14 @@ def getFileName(dir, type=[], fileList=[]):
 
 
 """判断一个unicode是否是汉字"""
+
+
 def is_chinese(uchar):
     if uchar >= u'\u4e00' and uchar <= u'\u9fa5':
         return True
     else:
         return False
+
 
 def isIncludeChinese(sText):
     if isinstance(sText, str):
@@ -247,4 +250,37 @@ def isIncludeChinese(sText):
         return False
     else:
         return False
+
+
+def getChineseStr(sText):
+    allList = []
+    if isinstance(sText, str):
+        cstr = ''
+        oldIdx = 0
+        isC = False
+        for idx in range(sText.__len__()):
+            uchar = sText[idx]
+            if is_chinese(uchar):
+                # 如果第一个 不是
+                if not isC:
+                    cstr = cstr + uchar
+                else:
+                    # 确定是连续的
+                    if idx - oldIdx == 1:
+                        cstr = cstr + uchar
+                isC = True
+                oldIdx = idx
+            else:
+                if len(cstr) > 0:
+                    allList.append(cstr)
+                    cstr = ""
+                    oldIdx = 0
+                isC = False
+            #如果是最后一个 需要单独判断
+            if idx == len(sText)-1:
+                if len(cstr) > 0:
+                    allList.append(cstr)
+    return allList
+
+#print(getChineseStr("啊啊啊啊fdsf我aads问问456456我问问dsafsda   fsda冯撒范德萨"))
 
