@@ -17,6 +17,7 @@ import shutil
 import requests
 import easyGameTool.foreignTools.tools.excelTool.ExcelTools as et
 import easyGameTool.projectConfig as cf
+
 # 是否为本地 数据库
 isLocal = True
 host = cf.host
@@ -26,21 +27,20 @@ passwd = cf.passwd
 database = cf.database
 
 
-
-def createJsonFile(jsonObj,fileName):
-
+def createJsonFile(jsonObj, fileName):
     with open(fileName + ".json", 'w') as f:
         json.dump(jsonObj, f, sort_keys=True, indent=4, separators=(',', ':'))
 
-def makeCcbTranslate(ccbSql):
+
+def makeCcbTranslate(ccbSql, xls="ccb.xls"):
     print("begin makeCcbTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database, charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
     # SQL 查询语句
-    sql =ccbSql
+    sql = ccbSql
     try:
         # 执行SQL语句
         cursor.execute(sql)
@@ -51,19 +51,21 @@ def makeCcbTranslate(ccbSql):
         for row in results:
             # itme["text"] = str(row[1])
             if str(row[1]) == "None":
-                itme = [row[0],row[2]]
+                itme = [row[0], row[2]]
                 obj["RECORDS"].append(itme)
-        et.makeExcel(obj,"ccb.xls")
+        et.makeExcel(obj, xls)
     except:
         print("Error: unable to fetch data")
     # 关闭数据库连接
     db.close()
     print("begin makeCcbTranslate success")
-def makeCoffeeTranslate(coffeeSql):
+
+
+def makeCoffeeTranslate(coffeeSql, xls="coffee.xls"):
     print("begin makeCoffeeTranslate")
     # 打开数据库连接
     # db = pymysql.connect("192.168.1.207", "root", "", "CHARACTER_SETS")
-    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database,charset='utf8mb4')
+    db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database, charset='utf8mb4')
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
     # SQL 查询语句
@@ -79,10 +81,10 @@ def makeCoffeeTranslate(coffeeSql):
         for row in results:
             # itme["text"] = str(row[1])
             if str(row[1]) == "None":
-                itme = [row[0],row[2]]
+                itme = [row[0], row[2]]
                 obj["RECORDS"].append(itme)
-        #createJsonFile(obj,"coffeeTranslate")
-        et.makeExcel(obj, "coffee.xls")
+        # createJsonFile(obj,"coffeeTranslate")
+        et.makeExcel(obj, xls)
     except:
         print("Error: unable to fetch data")
 
@@ -100,7 +102,7 @@ def copyfile(srcfile, dstfile):
             '''创建路径'''
             mkdir(fpath)
         '''复制文件'''
-        "".replace("png","txt").replace("jpg","txt")
+        "".replace("png", "txt").replace("jpg", "txt")
         shutil.copyfile(srcfile, dstfile)
         print("copy %s -> %s" % (srcfile, dstfile))
 
@@ -114,9 +116,3 @@ def mkdir(path):
         return True
     else:
         return False
-
-
-
-
-
-
