@@ -21,16 +21,16 @@
     }
 
     var data = createData()
-    var zongzuibiao = [0, 90]
+    var zongzuibiao = [0, 200]
     var henzuibiao = []
     data.forEach(function (item) {
         henzuibiao.push(item.date)
     })
-    var timeFormatStr = '%Y-%m-%d-%H:%M'
+    var timeFormatStr = '%m-%d-%H:%M'
     var titleStr = '实时新增'
     var selector = "#d3container"
-    var heng_g = '日期???'
-    var zong_g = '次/天'
+    var heng_g = '日期'
+    var zong_g = '人数'
     var param = {}
     param.kData = data
     param.zongzuibiao = zongzuibiao
@@ -41,8 +41,9 @@
     param.heng_g = heng_g
     param.zong_g = zong_g
     param.heng_val = [0, 50]//设置每一个坐标的跨度
-    param.height = 500
+    param.height = 600
     param.width = 1200
+    param.isClear = true
     /**
      * param.kData                  数据  数据类型 {data:Date,pv:Number}
      * param.zongzuibiao            纵坐标数据 数组[0,max]
@@ -78,7 +79,7 @@
             r1 = 8;
         // 定义动画持续时间
         var duration = 5000;
-        var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        var margin = {top: 80, right: 20, bottom: 80, left: 50},
             width = param.width,
             height = param.height - margin.top - margin.bottom;
         //var parseDate = d3.time.format(timeFormatStr).parse;
@@ -122,11 +123,14 @@
             });
 
         function show(isClear) {
+
             var container = $(selector)
             if (isClear) {
                 container.html('')
             }
-            if ($("svg").length == 0) {
+            let isHasSvg = $("svg").length !== 0
+
+            if (!isHasSvg) {
                 container = d3.select(selector).append('svg')
                 // .transition()
                     .attr('width', width + margin.left + margin.right)
@@ -159,19 +163,23 @@
                     .attr('x', width / 2)
                     .attr('y', 0);
 
-                svg.append('g')
-                    .attr('class', 'x axis')
-                    .attr('transform', 'translate(0,' + height + ')')
-                    .call(xAxis)
-                    .append('text')
-                    .text(heng_g)
-                    .attr('transform', 'translate(' + (width - 20) + ', 0)');
+                if (!isHasSvg) {
+                    svg.append('g')
+                        .attr('class', 'x axis')
+                        .attr('transform', 'translate(0,' + height + ')')
+                        .call(xAxis)
+                        .append('text').text(heng_g)
+                        .attr('transform', 'translate(' + (width - 20) + ', 0)');
+                }
 
-                svg.append('g')
-                    .attr('class', 'y axis')
-                    .call(yAxis)
-                    .append('text')
-                    .text(zong_g);
+                if (!isHasSvg) {
+                    svg.append('g')
+                        .attr('class', 'y axis')
+                        .call(yAxis)
+                        .append('text')
+                        .text(zong_g);
+                }
+
                 // svg.append('g')
                 //   .attr('class', 'grid')
                 //   .attr('transform', 'translate(0,' + height + ')')
@@ -184,7 +192,7 @@
                 var path = svg.append('path')
                     .attr('class', 'line')
                     .attr('d', line(data));
-
+                //点
                 var g = svg.selectAll('circle')
                     .data(data)
                     .enter()
@@ -236,7 +244,6 @@
                 }).on('mouseout', function () {
                     d3.select('.tips').style('display', 'none');
                 });
-
 
                 function redrawLine(cx, cy) {
                     if (cx < 0) d3.select('.flag').style('display', 'none');
