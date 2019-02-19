@@ -13,7 +13,7 @@
 <script>
     function createData() {
         let arr = []
-        arr = Array.apply(0, Array(23)).map(function (item, i) {
+        arr = Array.apply(0, Array(50)).map(function (item, i) {
             i++;
             return {date: new Date(2011, 1, 1, i), pv: parseInt(Math.random() * 100)}
         });
@@ -40,9 +40,9 @@
     param.selector = selector
     param.heng_g = heng_g
     param.zong_g = zong_g
-    param.heng_val = [0, 50]//设置每一个坐标的跨度
-    param.height = 600
     param.width = 1200
+    param.heng_val = [0, param.width/data.length]
+    param.height = 600
     param.isClear = true
     /**
      * param.kData                  数据  数据类型 {data:Date,pv:Number}
