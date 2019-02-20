@@ -7,7 +7,22 @@ __author__ = 'songbin'
 默认 只覆盖非空表格内容，不添加空格，
      可以根据配置表 加行 减行 （但是不会主动删除收集到的文件表，如需删除 需手动删掉）
 （因为策划会根据UI需求手动修改翻译资源表，资源数据表---》收集翻译表 仅仅是同步修改的东西）
+
+# 现在 有一个问题 就是  xlsx 不能执行.....
+
+# 所有 文件 加一个 xls 的文件夹  
+
 '''
+
+
+
+
+
+
+
+
+
+
 
 import pymysql
 from collections import OrderedDict
@@ -17,13 +32,22 @@ import re
 import xlrd
 import xlwt
 
+import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as et
+
+
+allchilesexlsFile = et.getFileName('/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/石器时代数值配置',["xls","xlsx"],[])
+for f in allchilesexlsFile:
+    if not os.path.isfile(f.replace("xlsx","xls")):
+        et.copyfile(f,f.replace("xlsx","xls"))
+
+
 # rootDataDir = '/Users/songbin/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512'
 # rootDataDir = '/Users/songbin/sanguo/aiweiyou_pokmon/RussionResources/资源表0512'
 # rootDataDir = '/Users/songbin/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512'
 rootDataDirList = {
-    2:"/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/资源表",
-    3:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512',
-    4:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/RussionResources/资源表0512',
+    2:"/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/石器时代数值配置",
+    3:'/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/石器时代数值配置',
+    4:'/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/RussianStone/peizhi',
     5:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512',
     6:'/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/GermanyResources/资源表0512',
     7:'',
@@ -42,7 +66,7 @@ rootDataDirList = {
 
 
 '''表名 所收集的翻译表目录'''
-translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir'
+translateDir = '/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/stone_foreign/translateResource/translateDir'
 '''Stone'''
 # translateDir = '/Users/songbin/stone_age/stone_foreign/translateResource/translateDir'
 
@@ -70,7 +94,7 @@ traditionalChinese= ['traditionalChinese',8]
 vietnam= ['vietnam',9]
 
 '''策划翻译配置表'''
-translateConfigFile = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/文本替换.xls'
+translateConfigFile = '/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/stone_foreign/文本替换.xls'
 '''Stong'''
 # translateConfigFile = '/Users/songbin/stone_age/stone_foreign/文本替换.xls'
 '''表名，sheet，列名（；；；）'''
