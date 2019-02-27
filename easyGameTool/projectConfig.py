@@ -25,7 +25,6 @@ MACMINI_COCOS_ALLPSDPATH = '/Users/admin/Documents/ljworkspace/local/cocos/asset
 MACMINI_EGRET_STONE_PRO = "/Users/admin/Documents/ljworkspace/local/egret/ProStoneAge/ProStoneAge/StoneAppPro"
 
 
-
 ##################################################################################################################
 
 
