@@ -10,6 +10,17 @@ import xlrd
 from xlwt import Workbook
 import sys
 import shutil
+import pymysql
+
+import easyGameTool.projectConfig as cf
+
+# 是否为本地 数据库
+isLocal = True
+host = cf.host
+port = cf.port
+user = cf.user
+passwd = cf.passwd
+database = cf.database
 
 
 def excelToList(file):
@@ -276,11 +287,48 @@ def getChineseStr(sText):
                     cstr = ""
                     oldIdx = 0
                 isC = False
-            #如果是最后一个 需要单独判断
-            if idx == len(sText)-1:
+            # 如果是最后一个 需要单独判断
+            if idx == len(sText) - 1:
                 if len(cstr) > 0:
                     allList.append(cstr)
     return allList
 
-#print(getChineseStr("啊啊啊啊fdsf我aads问问456456我问问dsafsda   fsda冯撒范德萨"))
 
+# print(getChineseStr("啊啊啊啊fdsf我aads问问456456我问问dsafsda   fsda冯撒范德萨"))
+
+
+def processSql(sql):
+    if not sql:
+        raise RuntimeError('no sql input')
+    if sql:
+        results = None
+        db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
+        cursor = db.cursor()
+        sql = sql
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+        except:
+            print("Error: unable to fetch data")
+        # 关闭数据库连接
+        db.close()
+        return results
+
+
+
+def insertDataSql(sql):
+    if not sql:
+        raise RuntimeError('no sql input')
+    if sql:
+        results = None
+        db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=database)
+        cursor = db.cursor()
+        sql = sql
+        try:
+            cursor.execute(sql)
+            db.commit()
+        except:
+            print("Error: unable to fetch data")
+        # 关闭数据库连接
+        db.close()
+        return results
