@@ -11,7 +11,7 @@ import copy
 
 allCoffee = et.getFileName(enFile, ["ccb"], [])
 
-ex = ["log"]  # '{0}' WHERE Id={1}
+ex = ["皮皮",'骄傲的老豆'] #皮？
 allCoffeeData = None
 allCoffeeData = et.processSql("SELECT Id,Chinese from ccbTranslate WHERE Id IS NOT NULL and Id != 0")
 
@@ -45,8 +45,6 @@ def getInsterIdx(inserData, st):
     return None
 
 
-
-
 def printDiffFunc(fileMore):
     global insertCount
     fp, fn = os.path.split(fileMore)
@@ -55,10 +53,26 @@ def printDiffFunc(fileMore):
     with open(fileMore, 'r') as f:
         li = f.read()
         l = li
-
-        chineseList = et.getChineseStr(l)
+        # 通过 string 分割 然后 只取 奇数的部分 里面只有内容  并且 包括lbl text
+        allSp = l.split("string")
+        allStr = []
+        for s in range(len(allSp)):
+            if s%2 == 1:
+                allStr.append(allSp[s].replace("</","").replace(">","").replace("\n","").replace("\t",""))
+        chineseList = []
+        for s in allStr:
+            if et.isIncludeChinese(s):
+                chineseList.append(s)
+        #chineseList = et.getChineseStr(l)
         if len(chineseList) > 0:
             for ch in chineseList:
+                needDe = False
+                for p in ex:
+                    if ch.find(p)>-1:
+                        needDe = True
+                if needDe:
+                    continue
+
                 id = getIdFormData(allCoffeeData, ch)
                 isHasData = True
                 if not id:
@@ -66,16 +80,16 @@ def printDiffFunc(fileMore):
                     id = getMaxID(allCoffeeData) + 1
                 # 做替换
 
-                if (">"+ch+"<") in l or ((">"+ch+"\n<") in l):
+                if (">" + ch + "<") in l or ((">" + ch + "\n<") in l):
                     l = l.replace(ch, "ccbList_" + str(id))
 
-                    if not isHasData :
+                    if not isHasData:
                         # insert
                         print("need insert id = >> " + str(id))
                         isInsertedID = getInsterIdx(needInsert, ch)
 
                         if isInsertedID == None:
-                            needInsert.append({"Id": id, "ch":ch, "file": fn})
+                            needInsert.append({"Id": id, "ch": ch, "file": fn})
                             insertCount = insertCount + 1
                         else:
                             dat = needInsert[isInsertedID]
@@ -91,11 +105,13 @@ def printDiffFunc(fileMore):
     with open(fileMore, 'w') as ff:
         ff.writelines(l)
 
-for coffee in allCoffee:
-    printDiffFunc(coffee)
+if __name__ == '__main__':
+    #exit(0)
+    # for coffee in allCoffee:
+    #     printDiffFunc(coffee)
 
-print(needInsert)
-# needInsert = [{'Id': 3258, 'ch': '嘉年华积分', 'file': 'BaseLayer.coffee'}, {'Id': 3259, 'ch': '联盟争霸币', 'file': 'BaseLayer.coffee'}, {'Id': 3260, 'ch': '火控制', 'file': 'Constants.coffee'}, {'Id': 3261, 'ch': '水控制', 'file': 'Constants.coffee'}, {'Id': 3262, 'ch': '草控制', 'file': 'Constants.coffee'}, {'Id': 3263, 'ch': '光控制', 'file': 'Constants.coffee'}, {'Id': 3264, 'ch': '暗控制', 'file': 'Constants.coffee'}, {'Id': 3265, 'ch': '日常-寻宝乐园', 'file': 'Constants.coffee'}, {'Id': 3266, 'ch': '王者之路', 'file': 'Constants.coffee'}, {'Id': 3267, 'ch': '转生排位', 'file': 'Constants.coffee'}, {'Id': 3268, 'ch': '宅急送', 'file': 'Constants.coffee'}, {'Id': 3269, 'ch': '日常-每日签到', 'file': 'Constants.coffee'}, {'Id': 3270, 'ch': '联盟商城', 'file': 'Constants.coffee'}, {'Id': 3271, 'ch': '京', 'file': 'Constants.coffee'}, {'Id': 3272, 'ch': '抗眩晕', 'file': 'Constants.coffee'}, {'Id': 3273, 'ch': '抗混乱', 'file': 'Constants.coffee'}, {'Id': 3274, 'ch': '联盟币', 'file': 'EasyCommon.coffee'}, {'Id': 3275, 'ch': '棒棒糖', 'file': 'EasyCommon.coffee'}, {'Id': 3276, 'ch': '国庆红包', 'file': 'EasyCommon.coffee'}, {'Id': 3277, 'ch': '元素入场券{0}', 'file': 'EasyCommon.coffee'}, {'Id': 3278, 'ch': '元素入场券', 'file': 'EasyCommon.coffee'}, {'Id': 3279, 'ch': '您在本期活动最高排名:', 'file': 'LayerKuaFuHistoryTop.coffee'}, {'Id': 3280, 'ch': '我的击杀次数：', 'file': 'LayerKuaFuSj.coffee'}, {'Id': 3281, 'ch': '更换', 'file': 'FormBackpack.coffee'}, {'Id': 3282, 'ch': '镶嵌', 'file': 'FormFuwenBag.coffee'}, {'Id': 3283, 'ch': '分解', 'file': 'FormFuwenBag.coffee'}, {'Id': 3284, 'ch': '请先选择要分解的符文', 'file': 'FormFuwenHuiShou.coffee'}, {'Id': 3285, 'ch': '暂无可分解的符文', 'file': 'FormFuwenHuiShou.coffee'}, {'Id': 3286, 'ch': '请先选择足够的彩球', 'file': 'FormFuwenHuoDe.coffee'}, {'Id': 3287, 'ch': '已激活班吉拉坐骑！', 'file': 'FormYiyuanBJL.coffee'}, {'Id': 3288, 'ch': '进阶等级：', 'file': 'FormPiShenJinJie.coffee'}, {'Id': 3289, 'ch': '开放时间：8:00~23:59', 'file': 'FormQiyu.coffee'}, {'Id': 3290, 'ch': '加载第一批json', 'file': 'DefContainer.coffee'}]
+    print(needInsert)
+    needInsert = [ {'Id': 2015, 'ch': '分解', 'file': 'FormFuwen.ccb'}, {'Id': 2016, 'ch': '2级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2017, 'ch': '4级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2018, 'ch': '投注结果：', 'file': 'FormFuwenDuiHuan.ccb'}, {'Id': 2019, 'ch': '多选', 'file': 'FormFuwenHuoDe.ccb'}, {'Id': 2020, 'ch': '适度娱乐,理性消费', 'file': 'FormYiYuanBJL.ccb'}, {'Id': 2021, 'ch': '数量x99999999', 'file': 'FormZhuanShuHuiShou.ccb'}, {'Id': 2022, 'ch': '历史最高', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2023, 'ch': '一键击杀', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2024, 'ch': '抗破+', 'file': 'LayerLuoTuoMu.ccb'}, {'Id': 2025, 'ch': '请选择出海次数', 'file': 'LayerShopBuy.ccb'}, {'Id': 2026, 'ch': '使用一折代金券', 'file': 'LayerShopBuy.ccb'}, {'Id': 2027, 'ch': '十次摇ccbList_1663', 'file': 'LayerSlots.ccb'}, {'Id': 2028, 'ch': 'ccbList_1753宠.jpg', 'file': 'NodefollowPetlevelUp.ccb'}, {'Id': 2029, 'ch': '张翼德  Lv.36', 'file': 'NodeHeroItem.ccb'}, {'Id': 2030, 'ch': '队员名字名字 lv ', 'file': 'NodeTeamBattleEnd.ccb'}]
 
-# for item in needInsert:
-#     et.insertDataSql(insterSql.format(str(item["Id"]), item["ch"], item['file']))
+    for item in needInsert:
+        et.insertDataSql(insterSql.format(str(item["Id"]), item["ch"], item['file']))
