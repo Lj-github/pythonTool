@@ -107,11 +107,11 @@ def printDiffFunc(fileMore):
 
 if __name__ == '__main__':
     #exit(0)
-    # for coffee in allCoffee:
-    #     printDiffFunc(coffee)
+    for coffee in allCoffee:
+        printDiffFunc(coffee)
 
     print(needInsert)
-    needInsert = [ {'Id': 2015, 'ch': '分解', 'file': 'FormFuwen.ccb'}, {'Id': 2016, 'ch': '2级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2017, 'ch': '4级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2018, 'ch': '投注结果：', 'file': 'FormFuwenDuiHuan.ccb'}, {'Id': 2019, 'ch': '多选', 'file': 'FormFuwenHuoDe.ccb'}, {'Id': 2020, 'ch': '适度娱乐,理性消费', 'file': 'FormYiYuanBJL.ccb'}, {'Id': 2021, 'ch': '数量x99999999', 'file': 'FormZhuanShuHuiShou.ccb'}, {'Id': 2022, 'ch': '历史最高', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2023, 'ch': '一键击杀', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2024, 'ch': '抗破+', 'file': 'LayerLuoTuoMu.ccb'}, {'Id': 2025, 'ch': '请选择出海次数', 'file': 'LayerShopBuy.ccb'}, {'Id': 2026, 'ch': '使用一折代金券', 'file': 'LayerShopBuy.ccb'}, {'Id': 2027, 'ch': '十次摇ccbList_1663', 'file': 'LayerSlots.ccb'}, {'Id': 2028, 'ch': 'ccbList_1753宠.jpg', 'file': 'NodefollowPetlevelUp.ccb'}, {'Id': 2029, 'ch': '张翼德  Lv.36', 'file': 'NodeHeroItem.ccb'}, {'Id': 2030, 'ch': '队员名字名字 lv ', 'file': 'NodeTeamBattleEnd.ccb'}]
-
-    for item in needInsert:
-        et.insertDataSql(insterSql.format(str(item["Id"]), item["ch"], item['file']))
+    # needInsert = [ {'Id': 2015, 'ch': '分解', 'file': 'FormFuwen.ccb'}, {'Id': 2016, 'ch': '2级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2017, 'ch': '4级', 'file': 'FormFuwenBag.ccb'}, {'Id': 2018, 'ch': '投注结果：', 'file': 'FormFuwenDuiHuan.ccb'}, {'Id': 2019, 'ch': '多选', 'file': 'FormFuwenHuoDe.ccb'}, {'Id': 2020, 'ch': '适度娱乐,理性消费', 'file': 'FormYiYuanBJL.ccb'}, {'Id': 2021, 'ch': '数量x99999999', 'file': 'FormZhuanShuHuiShou.ccb'}, {'Id': 2022, 'ch': '历史最高', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2023, 'ch': '一键击杀', 'file': 'LayerKuaFuSj.ccb'}, {'Id': 2024, 'ch': '抗破+', 'file': 'LayerLuoTuoMu.ccb'}, {'Id': 2025, 'ch': '请选择出海次数', 'file': 'LayerShopBuy.ccb'}, {'Id': 2026, 'ch': '使用一折代金券', 'file': 'LayerShopBuy.ccb'}, {'Id': 2027, 'ch': '十次摇ccbList_1663', 'file': 'LayerSlots.ccb'}, {'Id': 2028, 'ch': 'ccbList_1753宠.jpg', 'file': 'NodefollowPetlevelUp.ccb'}, {'Id': 2029, 'ch': '张翼德  Lv.36', 'file': 'NodeHeroItem.ccb'}, {'Id': 2030, 'ch': '队员名字名字 lv ', 'file': 'NodeTeamBattleEnd.ccb'}]
+    #
+    # for item in needInsert:
+    #     et.insertDataSql(insterSql.format(str(item["Id"]), item["ch"], item['file']))
