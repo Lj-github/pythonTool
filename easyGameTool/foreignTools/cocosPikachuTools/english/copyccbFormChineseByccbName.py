@@ -10,7 +10,7 @@ ch ="/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu/tools/pikach
 
 en ="/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/tools/pikachuCCB/ccb"
 
-ccbname = "FormYiyuan"
+ccbname = "NodeActivityItem"
 
 
 
