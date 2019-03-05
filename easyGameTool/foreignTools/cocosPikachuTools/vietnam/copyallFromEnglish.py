@@ -3,22 +3,22 @@
 
 # 把中文版里面所有  越南没有的  都复制过来
 
-chinesePro ="/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu"
+chinesePro ="/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english"
 
 svnPath =[
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu/tools/pikachuFontAndPlist",
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu/tools/pikachuCCB",
-    "/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu/app/static/res",
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/Pikachu/app/static/coffee"
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/tools/pikachuFontAndPlist",
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/tools/pikachuCCB",
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/app/static/res",
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/app/static/coffee"
 ]
 
 englishPro = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english"
 
 projectFile = [
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/tools/pikachuFontAndPlist",
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/tools/pikachuCCB",
+    "//Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/tools/pikachuFontAndPlist",
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/tools/pikachuCCB",
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res",
-    #"/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_englishGit/pikachu_english/app/static/coffee"
+    "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/coffee"
 
 ]
 
