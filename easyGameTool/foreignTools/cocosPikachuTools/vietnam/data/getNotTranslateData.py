@@ -1,6 +1,10 @@
 __author__ = 'songbin'
 '''
 获取未翻译的数据文件（从收集的翻译表内）
+
+就是 提取 翻译的 
+
+先把 越南的 提取  一下 在 注进去..
 '''
 
 import pymysql
@@ -20,14 +24,14 @@ translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sa
 translateTitleList = ['Id','colName','Chinese','English','Russion','French','Germany','TraditionalChinese','Vietnam']
 '''                     0     1          2        3         4          5      6            7                  8'''
 '''translateTitleList 的idx'''
-translateIDx = 3
+translateIDx = 8
 '''是否需要带上英语翻译'''
 isNeedEnglish = True
 isGetTranslate = True  # 是否抽取 全部 数据
 isNeedAll = False
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Desktop/越南翻译1226/data'
+beTranslateDir = '/Users/admin/Desktop/sssss'
 # beTranslateDir = '/Users/songbin/Downloads/Language/越南/needBeTranslate-Russion-2018.11.01/needTranslateData'
 # beTranslateDir = '/Users/songbin/Downloads/Language/俄文/allTranslate-pika-Russion-18.11.12/dataTranslate'
 

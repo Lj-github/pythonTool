@@ -12,7 +12,6 @@ shendanFile = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/san
 
 baseFile =  "/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/art_pikachu/动画/替换怪物"
 
-
 projectFile = '/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res/unit'
 
 if __name__ == '__main__':

@@ -97,6 +97,7 @@ if __name__ == '__main__':
        SALARY         REAL);'''
     print(tableSql)
     createDateBase(dataBaseName)
+    createTableFormDataBase(dataBaseName, "drop table if exists USER;")
     createTableFormDataBase(dataBaseName, tableSql)
     print(isTableExitFormDB(dataBaseName, "USER"))
     # insertDataToDB(dataBaseName, "INSERT INTO USER (ID,NAME,AGE,ADDRESS,SALARY) \
@@ -104,10 +105,10 @@ if __name__ == '__main__':
     #
     # insertDataToDB(dataBaseName, "INSERT INTO USER (ID,NAME,AGE,ADDRESS,SALARY) \
     #   VALUES (2, 'Allen', 25, 'Texas', 15000.00 )")
-    print("Opened database successfully")
-    cursor = selectDataFormDB(dataBaseName, "SELECT id, name, address, salary  from USER")
-    for row in cursor:
-        print("ID = ", row[0])
-        print("NAME = ", row[1])
-        print("ADDRESS = ", row[2])
-        print("SALARY = ", row[3], "\n")
+    # print("Opened database successfully")
+    # cursor = selectDataFormDB(dataBaseName, "SELECT id, name, address, salary  from USER")
+    # for row in cursor:
+    #     print("ID = ", row[0])
+    #     print("NAME = ", row[1])
+    #     print("ADDRESS = ", row[2])
+    #     print("SALARY = ", row[3], "\n")

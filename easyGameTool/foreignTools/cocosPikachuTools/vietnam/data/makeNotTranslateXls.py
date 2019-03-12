@@ -20,13 +20,13 @@ import xlwt
 
 
 '''表名'''
-translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir'
+translateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/translateDir的副本'
 translateTitleList = ['Id','colName','Chinese','English','Russion','French','Germany','TraditionalChinese','Vietnam']
 '''                     0      1         2          3         4        5        6          7                   8'''
 translateIDx = 8
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Desktop/pikachu越南版/越南翻译1226fankui/越南翻译1226/data'
+#
 # beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
 # beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''

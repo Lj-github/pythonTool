@@ -54,7 +54,7 @@ isReplaceNull = True####
 
 '''translateIDx=2(从中文表内抽取对应中文填充在翻译收集表) 应该最后在执行，中文只是填充，不会增加行'''
 translateIDxList = [3,4,5,6,7,8,2]
-translateIDxList = [3,2]
+translateIDxList = [8]
 
 # beTranslateDir = '/Users/songbin/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
 '''表名，sheet，ID，中文，英文，俄文，法文, 德文，繁文，越南'''

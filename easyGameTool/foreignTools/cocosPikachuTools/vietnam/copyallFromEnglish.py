@@ -3,9 +3,9 @@
 
 # 把中文版里面所有  越南没有的  都复制过来
 
-chinesePro ="/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english"
+chinesePro = "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english"
 
-svnPath =[
+svnPath = [
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/tools/pikachuFontAndPlist",
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/tools/pikachuCCB",
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_english_180511/pikachu_english/app/static/res",
@@ -19,7 +19,6 @@ projectFile = [
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/tools/pikachuCCB",
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/res",
     "/Users/admin/Documents/ljworkspace/local/cocos/project/pikachu_vietnam/pikachu_english/app/static/coffee"
-
 ]
 
 # 复制 全部 中文版的资源  当然是没有的
@@ -29,13 +28,14 @@ import json
 import shutil
 import hashlib
 
+
 def GetFileListOnlyImg(dir, fileList):
     newDir = dir
     if os.path.isfile(dir):
         fileList.append(dir)
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
+            newDir = os.path.join(dir, s)
             GetFileListOnlyImg(newDir, fileList)
     return fileList
 
@@ -71,14 +71,12 @@ def get_file_md5(file_path):
     return fname
 
 
-
-
 def getFileListMd5Dir(fileList):
     obj = {}
     if fileList:
         for f in fileList:
             fpath, fname = os.path.split(f)
-            key = fname.replace(".","_")
+            key = fname.replace(".", "_")
             o = {}
             o["path"] = f
             o["md5"] = get_file_md5(f)
@@ -86,13 +84,16 @@ def getFileListMd5Dir(fileList):
 
     return obj
 
+
 '''  由于 project 里面的图片 有两个路径 有的需要 都替换  o dir 需要加一个 字段  '''
+
+
 def getProFileListMd5Dir(fileList):
     obj = {}
     if fileList:
         for f in fileList:
             fpath, fname = os.path.split(f)
-            key = fname.replace(".","_")
+            key = fname.replace(".", "_")
             o = {}
             if key in obj:
                 o = obj[key]
@@ -104,14 +105,18 @@ def getProFileListMd5Dir(fileList):
                 obj[key] = o
 
     return obj
-def getLocalPathByName(allFile,fName):
+
+
+def getLocalPathByName(allFile, fName):
     for k in allFile:
         f = allFile[k]
-        fp,fn = os.path.split(f["path"])
+        fp, fn = os.path.split(f["path"])
         if fn == fName:
             return f
     return None
-def isEnglishHas(list,fileName):
+
+
+def isEnglishHas(list, fileName):
     for ff in list:
         if ff == fileName:
             return True
@@ -121,15 +126,12 @@ def isEnglishHas(list,fileName):
 if __name__ == '__main__':
     filee = os.path.realpath(__file__)
     fpath, fname = os.path.split(filee)
-
-    for i in range(len(svnPath)) :
-        chineseproAllName = GetFileListOnlyImg(svnPath[i],[])
-        englishroAllName = GetFileListOnlyImg(projectFile[i],[])
+    for i in range(len(svnPath)):
+        chineseproAllName = GetFileListOnlyImg(svnPath[i], [])
+        englishroAllName = GetFileListOnlyImg(projectFile[i], [])
 
         for chineseFile in chineseproAllName:
-            "chi".replace(chinesePro,"")
-            comFi  = chineseFile.replace(chinesePro,englishPro)
-            if not isEnglishHas(englishroAllName,comFi):
-                copyfile(chineseFile,comFi)
-
-
+            "chi".replace(chinesePro, "")
+            comFi = chineseFile.replace(chinesePro, englishPro)
+            if not isEnglishHas(englishroAllName, comFi):
+                copyfile(chineseFile, comFi)
