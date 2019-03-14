@@ -7,7 +7,7 @@
     从svn 上面 通过md5  对比图片文件  不同 则复制到project 文件里面   egret 项目 图片替换脚本
 '''
 
-svnPath = "/Users/admin/Desktop/石器俄服/img"
+svnPath = "/Users/admin/Desktop/石器俄服/石器俄语完成0220/图片未翻译"
 projectFile = "/Users/admin/Documents/ljworkspace/local/egret/ProStoneAge/ProStoneAge"
 
 import os

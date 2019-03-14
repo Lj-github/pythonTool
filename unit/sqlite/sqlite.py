@@ -23,8 +23,9 @@ def createTableFormDataBase(dataBase, tableSql):
     conn = sqlite3.connect(dataBase)
     print("Opened database successfully")
     c = conn.cursor()
-    c.execute(tableSql)
+    c.executescript(tableSql)
     print("Table created successfully")
+    # c.execute() 这个 一次 只能执行 一个 sql
     conn.commit()
     conn.close()
 
@@ -95,6 +96,26 @@ if __name__ == '__main__':
        AGE            INT     NOT NULL,
        ADDRESS        CHAR(50),
        SALARY         REAL);'''
+
+    tableSql = '''PRAGMA foreign_keys = false;
+
+-- ----------------------------
+-- Table structure for test
+-- ----------------------------
+DROP TABLE IF EXISTS "test";
+CREATE TABLE "test" (
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "number" INTEGER,
+  "name" TEXT,
+  "sb" TEXT
+);
+
+-- ----------------------------
+-- Auto increment value for test
+-- ----------------------------
+
+PRAGMA foreign_keys = true;
+'''
     print(tableSql)
     createDateBase(dataBaseName)
     createTableFormDataBase(dataBaseName, "drop table if exists USER;")
