@@ -7,172 +7,134 @@
     <link rel="stylesheet" href="css/d3.css">
 </head>
 <body>
+<div id="d3container"></div>
 
-
+<script src="../../_flask/static/lib/jquery-3.3.1.js"></script>
 <script>
+    var createKLine = function (param) {
+        var kData = param.kData
+        var max = 0
+        var henzuibiao = []
+        let i = 1
+        let tttt = []
+        kData.forEach(function (item) {
+            if (max < item.py) {
+                max = item.py
+            }
+            henzuibiao.push(item.px)
+            tttt.push(i)
+            i++
 
-    console.log("")
-    //按照 需求  制作 坐标 可以做 多个 线
-    let henzuobiao = Array.apply(0, Array(31)).map(function (item, i) {
-        i++;
-        return {date: '2013-12-' + (i < 10 ? '0' + i : i), pv: parseInt(Math.random() * 100)}
-    });
+        })
+        var zongzuibiao = [0, max]
+        var timeFormatStr = "%m-%d-%H:%M"
+        var titleStr = param.titleStr
+        var selector = "#d3container"
+        var heng_g = param.heng_g
+        let zong_g = param.zong_g
+        let isClear = true
+        var len = kData.length || 1
+        param.width = 1400
+        param.height = 700
+        let heng_val = [0, param.width / len]
 
-    let zongzuibiao = []
-
-
-    let marginBase = {top: 80, right: 20, bottom: 50, left: 50}
-    //坐标 宽度
-    let coordinate_W = document.body.clientWidth
-    //坐标高度
-    let coordinate_H = 700 - marginBase.top - marginBase.bottom
-    //线条
-    let lines = [];
-    const TITLE = '2013年12月PV'
-
-    ;(function () {
-        'use strict';
-
-        var data = henzuobiao
+        //按照 需求  制作 坐标 可以做 多个 线
+        //线条
+        let lines = [];
+        const TITLE = titleStr
         // 定义circle的半径
         var r0 = 5,
             r1 = 8;
-
         // 定义动画持续时间
         var duration = 5000;
-
-        var margin = marginBase
-        var width = coordinate_W
-        var height = coordinate_H
-
-        var parseDate = d3.time.format('%Y-%m-%d').parse;
-
+        var margin = {top: 80, right: 20, bottom: 100, left: 50},
+            width = param.width,
+            height = param.height - margin.top - margin.bottom;
+        //var parseDate = d3.time.format(timeFormatStr).parse;
         var x = d3.time.scale()
         // .domain([0, 100])
-            .range([0, width]);
-
+            .range([0, width]);//设置每一个坐标的跨度
         var y = d3.scale.linear()
         // .domain([0, 100])
-            .range([height, 0]);
-
+            .range([height, 0]); //
+        //设置 很坐标的数据
         var xAxis = d3.svg.axis()
             .scale(x)
             .orient('bottom')
-            // .tickFormat(function(d, i) {
-            //   // return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-');
-            //   // return [d.getMonth() + 1, d.getDate()].join('-');
-            //   var date = d.getDate();
-            //   return date < 10 ? '0' + date : date;
-            // })
-            // 相同的效果
-            .tickFormat(d3.time.format('%Y-%m-%d'))
+            .tickFormat(d3.time.format(timeFormatStr))
             .ticks(30)
-
         var yAxis = d3.svg.axis()
             .scale(y)
             .orient('left')
             .ticks(10);
 
-        var xGridAxis = d3.svg.axis()
-            .scale(x)
-            .orient('bottom');
-
-        var yGridAxis = d3.svg.axis()
-            .scale(y)
-            .orient('left');
-
         var line = d3.svg.line()
             .x(function (d) {
-                return x(d.date);
+                return x(d.px);
             })
             .y(function (d) {
-                return y(d.pv);
+                return y(d.py);
             })
             .interpolate('monotone');
 
-        var flagLine = d3.svg.line()
-            .x(function (d) {
-                return x(d.x);
-            })
-            .y(function (d) {
-                return y(d.y);
-            });
 
-        window.container = d3.select('body')
-            .append('svg')
-            // .transition()
-            .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom);
+        function show(isClear) {
 
-        var svg;
+            var container = $(selector)
+            if (isClear) {
+                container.html('')
+            }
+            let isHasSvg = $("svg").length !== 0
 
-        show();
-        setInterval(function () {
-
-
-        }, 1000)
-
-
-        //show();
-
-        function show() {
-            data = Array.apply(0, Array(31)).map(function (item, i) {
-                i++;
-                return {date: '2013-12-' + (i < 10 ? '0' + i : i), pv: parseInt(Math.random() * 100)}
-            });
-
+            if (!isHasSvg) {
+                container = d3.select(selector).append('svg')
+                // .transition()
+                    .attr('width', width + margin.left + margin.right)
+                    .attr('height', height + margin.top + margin.bottom);
+            } else {
+                container = d3.select('svg')
+            }
+            var svg;
+            var data = kData
             svg = container.append('g')
                 .attr('class', 'content')
                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
             function draw() {
                 data.forEach(function (d) {
-                    d.dayText = d.date;
-                    d.date = parseDate(d.date);
-                    d.pv = +d.pv;
+                    d.py = +d.py;
                 });
-
-                x.domain(d3.extent(data, function (d) {
-                    return d.date;
+                //x.domain([henzuibiao[0], henzuibiao[len-1]])
+                x.domain(d3.extent(data, function (d) {// 设置横坐标
+                    return d.px;
                 }));
-                y.domain([0, d3.max(data, function (d) {
-                    return d.pv;
-                })]);
-
+                y.domain(zongzuibiao)
                 svg.append('text')
                     .attr('class', 'title')
                     .text(TITLE)
                     .attr('x', width / 2)
                     .attr('y', 0);
+                if (!isHasSvg) {
+                    svg.append('g')
+                        .attr('class', 'x axis')
+                        .attr('transform', 'translate(0,' + height + ')')
+                        .call(xAxis)
+                        .append('text').text(heng_g)
+                        .attr('transform', 'translate(' + (width - 20) + ', 0)');
+                }
 
-                svg.append('g')
-                    .attr('class', 'x axis')
-                    .attr('transform', 'translate(0,' + height + ')')
-                    .call(xAxis)
-                    .append('text')
-                    .text('日期')
-                    .attr('transform', 'translate(' + (width - 20) + ', 0)');
-
-                svg.append('g')
-                    .attr('class', 'y axis')
-                    .call(yAxis)
-                    .append('text')
-                    .text('次/天');
-
-                // svg.append('g')
-                //   .attr('class', 'grid')
-                //   .attr('transform', 'translate(0,' + height + ')')
-                //   .call(xGridAxis.tickSize(-height, 0, 0).tickFormat(''));
-
-                // svg.append('g')
-                //   .attr('class', 'grid')
-                //   .call(yGridAxis.tickSize(-width, 0, 0).tickFormat(''));
-
+                if (!isHasSvg) {
+                    svg.append('g')
+                        .attr('class', 'y axis')
+                        .call(yAxis)
+                        .append('text')
+                        .text(zong_g);
+                }
                 var path = svg.append('path')
                     .attr('class', 'line')
                     .attr('d', line(data));
-
-                svg.selectAll('circle')
+                //点
+                var g = svg.selectAll('circle')
                     .data(data)
                     .enter()
                     .append('g')
@@ -187,14 +149,6 @@
                     .on('mouseout', function () {
                         d3.select(this).transition().duration(duration).attr('r', r0);
                     });
-
-                // svg.append('line')
-                //   .attr('class', 'flag')
-                //   .attr('x1', 0)
-                //   .attr('y1', 0)
-                //   .attr('x2', 0)
-                //   .attr('y2', y(0));
-
                 var tips = svg.append('g').attr('class', 'tips');
 
                 tips.append('rect')
@@ -209,7 +163,6 @@
                     .attr('x', 10)
                     .attr('y', 20)
                     .text('');
-
                 var wording2 = tips.append('text')
                     .attr('class', 'tips-text')
                     .attr('x', 10)
@@ -225,71 +178,56 @@
                     d3.select('.tips').style('display', 'none');
                 });
 
-
-                function redrawLine(cx, cy) {
-                    if (cx < 0) d3.select('.flag').style('display', 'none');
-                    else
-                        d3.select('.flag')
-                            .attr('x1', cx)
-                            .attr('x2', cx)
-                            .style('display', 'block');
-                    showWording(cx);
-                }
-
-                function showTips(cx, cy) {
-                    cy -= 50;
-                    if (cy < 0) cy += 100;
-                    d3.select('.tips')
-                        .attr('transform', 'translate(' + cx + ',' + cy + ')')
-                        .style('display', 'block');
-                }
-
                 function showWording(cx) {
                     var x0 = x.invert(cx);
                     var i = (d3.bisector(function (d) {
-                        return d.date;
+                        return d.px;
                     }).left)(data, x0, 1);
-
                     var d0 = data[i - 1],
                         d1 = data[i] || {},
-                        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+                        d = x0 - d0.px > d1.px - x0 ? d1 : d0;
 
                     function formatWording(d) {
-                        return '日期：' + d3.time.format('%Y-%m-%d')(d.date);
+                        return heng_g + ":" + d3.time.format(timeFormatStr)(d.px);
                     }
 
                     wording1.text(formatWording(d));
-                    wording2.text('PV：' + d.pv);
-
-                    var x1 = x(d.date),
-                        y1 = y(d.pv);
-
-
+                    wording2.text(zong_g + ":" + d.py);
+                    var x1 = x(d.px),
+                        y1 = y(d.py);
                     // 处理超出边界的情况
                     var dx = x1 > width ? x1 - width + 200 : x1 + 200 > width ? 200 : 0;
-
                     var dy = y1 > height ? y1 - height + 50 : y1 + 50 > height ? 50 : 0;
-
                     x1 -= dx;
                     y1 -= dy;
-
                     d3.select('.tips')
                         .attr('transform', 'translate(' + x1 + ',' + y1 + ')');
                 }
             }
 
             draw();
+
+            d3.selectAll("g.x g.tick text")
+                .attr("x", -0)
+                .attr("y", 30)
+                .attr("transform", "rotate(-30)");
         }
 
-    })();
+        show(isClear)
+    }
 
-    console.log("tete")
-
-
-    d3.selectAll("g.x g.tick text")
-        .attr("x", -0)
-        .attr("transform", "rotate(-30)");
-
+    let data = JSON.parse('[{"newSum":18,"time":1550507400000,"serviceId":"19服"},{"newSum":21,"time":1550509200000,"serviceId":"19服"},{"newSum":22,"time":1550511000000,"serviceId":"19服"},{"newSum":18,"time":1550512800000,"serviceId":"19服"},{"newSum":7,"time":1550514600000,"serviceId":"19服"},{"newSum":15,"time":1550516400000,"serviceId":"19服"},{"newSum":9,"time":1550518200000,"serviceId":"19服"},{"newSum":2,"time":1550520000000,"serviceId":"19服"},{"newSum":5,"time":1550521800000,"serviceId":"19服"},{"newSum":3,"time":1550523600000,"serviceId":"19服"},{"newSum":3,"time":1550525400000,"serviceId":"19服"},{"newSum":8,"time":1550527200000,"serviceId":"19服"},{"newSum":1,"time":1550529000000,"serviceId":"19服"},{"newSum":10,"time":1550530800000,"serviceId":"19服"},{"newSum":28,"time":1550532600000,"serviceId":"19服"},{"newSum":54,"time":1550534400000,"serviceId":"19服"},{"newSum":71,"time":1550536200000,"serviceId":"19服"},{"newSum":92,"time":1550538000000,"serviceId":"19服"},{"newSum":87,"time":1550539800000,"serviceId":"19服"},{"newSum":138,"time":1550541600000,"serviceId":"19服"},{"newSum":147,"time":1550543400000,"serviceId":"19服"},{"newSum":96,"time":1550545200000,"serviceId":"19服"},{"newSum":0,"time":1550547000000,"serviceId":"19服"},{"newSum":0,"time":1550548800000,"serviceId":"19服"},{"newSum":0,"time":1550550600000,"serviceId":"19服"},{"newSum":0,"time":1550552400000,"serviceId":"19服"},{"newSum":0,"time":1550554200000,"serviceId":"19服"},{"newSum":0,"time":1550556000000,"serviceId":"19服"},{"newSum":0,"time":1550557800000,"serviceId":"19服"},{"newSum":0,"time":1550559600000,"serviceId":"19服"},{"newSum":0,"time":1550561400000,"serviceId":"19服"},{"newSum":0,"time":1550563200000,"serviceId":"19服"},{"newSum":0,"time":1550565000000,"serviceId":"19服"},{"newSum":0,"time":1550566800000,"serviceId":"19服"},{"newSum":0,"time":1550568600000,"serviceId":"19服"},{"newSum":0,"time":1550570400000,"serviceId":"19服"},{"newSum":0,"time":1550572200000,"serviceId":"19服"},{"newSum":0,"time":1550574000000,"serviceId":"19服"},{"newSum":0,"time":1550575800000,"serviceId":"19服"},{"newSum":0,"time":1550577600000,"serviceId":"19服"},{"newSum":0,"time":1550579400000,"serviceId":"19服"},{"newSum":0,"time":1550581200000,"serviceId":"19服"},{"newSum":0,"time":1550583000000,"serviceId":"19服"},{"newSum":0,"time":1550584800000,"serviceId":"19服"},{"newSum":0,"time":1550586600000,"serviceId":"19服"},{"newSum":0,"time":1550588400000,"serviceId":"19服"},{"newSum":0,"time":1550590200000,"serviceId":"19服"},{"newSum":0,"time":1550592000000,"serviceId":"19服"}]')
+    let kData = []
+    //d3.time.format("%m-%d-%H:%M")(
+    data.forEach(function (item) {
+        kData.push({px: new Date(item.time), py: item.newSum})
+    })
+    var param = {}
+    param.kData = kData
+    param.titleStr = 'f' + "实时新增人数"
+    param.heng_g = "时间"
+    param.zong_g = "人数"
+    createKLine(param);
 
 </script>
 </body>
