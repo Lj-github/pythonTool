@@ -24,10 +24,10 @@ translateIDx = 3
 '''是否需要带上英语翻译'''
 isNeedEnglish = False
 isGetTranslate = True  # 是否抽取 全部 数据
-isNeedAll = False
+isNeedAll = True
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/波兰翻译总/data'
+beTranslateDir = '/Users/admin/Desktop/英文版未翻译0318'
 # beTranslateDir = '/Users/songbin/Downloads/Language/越南/needBeTranslate-Russion-2018.11.01/needTranslateData'
 # beTranslateDir = '/Users/songbin/Downloads/Language/俄文/allTranslate-pika-Russion-18.11.12/dataTranslate'
 
@@ -244,6 +244,8 @@ try:
     for root, dirs, files in os.walk(translateDir):
         for OneFileName in files:
             if (OneFileName.find('.xls') > 0 or OneFileName.find('.xlsx') > 0):
+                print("正在执行的 xls => "  + OneFileName)
+
                 makeSheepInfo(os.path.join(root, OneFileName),OneFileName)
 
         for dir in dirs:
