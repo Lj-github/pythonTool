@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../static/lib/jquery-3.3.1.js"></script>
+</head>
+<body>
+test2
+
+
+<script>
+
+    // 每秒发送 60 次 post 内容大致 是 200k  测试性能  直接使用 post  方法  比socket  快 差不多 4 倍
+    var all = []
+
+    function getStr() {
+        var str = ''
+        var eng = 'qwertyuiopasdfghjklzxcvbnm'.split("")
+        for (var i = 0; i < 200000; i++) {
+            str = eng[Math.floor(Math.random() * 26)] + str
+        }
+        return str
+    }
+
+
+    var idx = 0
+    //id=4545&ff=5555&query=/mydict
+    function post(id, cont) {
+        $.ajax({
+            type: "POST",
+            url:  "http://127.0.0.1:3333/case/ajaxPost",//"http://192.168.1.214:9613/mydict",
+            data: {id: 4545, ff: 5555,query:"/mydict"},
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+            },
+            //回收 主动
+            complete: function (XHR, TS) {
+                XHR = null
+            },
+            error:function (e) {
+                console.log("失败")
+                console.log(e)
+            }
+        });
+    }
+    post(0, all[0])
+
+
+    var FPS = 30 //使用30 fps 比较合适  直接能成功
+
+    var isBegin = false
+    var time = new Date()
+    console.log("开始时间 " + time.getSeconds() + "s")
+
+    var old = 0
+    var timer
+    var count = 0
+   /* var begin = function () {
+        timer = setInterval(function () {
+            all.push(getStr())
+            count++
+            if (!isBegin) {
+                post(0, all[0])
+            }
+            if (count % 60 === 0) {
+                console.log("运行时间 " + new Date().getSeconds() + " 秒")
+                console.log("数量差值 " + (count - old) + " 次数")
+                old = count
+            }
+        }, 1000 / FPS)
+    }
+    var stop = function () {
+        clearInterval(timer)
+    }*/
+
+
+</script>
+</body>
+</html>
