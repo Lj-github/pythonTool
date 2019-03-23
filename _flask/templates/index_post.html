@@ -10,6 +10,8 @@
 test2
 
 
+<span id="text"></span>
+
 <script>
 
     // 每秒发送 60 次 post 内容大致 是 200k  测试性能  直接使用 post  方法  比socket  快 差不多 4 倍
@@ -75,6 +77,12 @@ test2
     var stop = function () {
         clearInterval(timer)
     }*/
+
+    /**
+     *  添加 空格
+     */
+
+    $("#text").html("0"+'&nbsp;')
 
 
 </script>

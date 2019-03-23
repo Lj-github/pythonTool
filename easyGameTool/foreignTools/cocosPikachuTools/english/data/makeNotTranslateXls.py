@@ -24,7 +24,7 @@ translateTitleList = ['Id','colName','Chinese','English','Russion','French','Ger
 translateIDx = 3
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
-beTranslateDir = '/Users/admin/Desktop/全版本配置数据翻译/全版本配置数据翻译' # 配置好  路径  就行  能直接  执行
+beTranslateDir = '/Users/admin/Desktop/beitihuan' # 配置好  路径  就行  能直接  执行
 # beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
 # beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''

@@ -20,6 +20,8 @@ def postTest():
 
 @app.route('/mydict', methods=['GET', 'POST'])
 def mydict():
+    id =  request.values['id']
+    ff = request.values['ff']
     d = {'name': 'xmr', 'age': 18}
     return jsonify(d)
 
