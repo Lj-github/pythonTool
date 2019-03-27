@@ -31,10 +31,10 @@ test2
     //id=4545&ff=5555&query=/mydict
     function post(id, cont) {
         $.ajax({
-            type: "POST",
-            url:  "http://127.0.0.1:3333/case/ajaxPost",//"http://192.168.1.214:9613/mydict",
-            data: {id: 4545, ff: 5555,query:"/mydict"},
-            dataType: "json",
+            type: 'POST',
+            url:  "http://192.168.1.214:5001/res/battle/",//"http://192.168.1.214:9613/mydict",
+            data: {"forms0":{"fType":1,"hero":[{"gwID":0,"uID":2106}]},"forms1":{"fType":2,"hero":[{"gwID":40001,"uID":0},{"gwID":50001,"uID":0},{"gwID":60001,"uID":0}]},"skills":[]},
+            dataType: "jsonp",
             success: function (data) {
                 console.log(data)
             },
