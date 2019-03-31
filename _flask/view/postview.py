@@ -37,3 +37,16 @@ def postSaveTxt():
     loader = {}
     loader['dd'] = 'success'
     return json.dumps(loader), 200, {'Content-Type': 'application/json; charset=utf-8'}
+
+basedir = '/Users/admin/Documents/ljworkspace/local/python/pythonTool/_flask'
+
+@app.route('/postSaveImg', methods=['POST'])#,strict_slashes=False
+def postSaveImg():
+    img = request.files.get('photo')
+    username = request.form.get("name")
+    path = basedir + "/static/photo/"
+    file_path = path + img.filename
+    img.save(file_path)
+    print('上传头像成功，上传的用户是：' + username)
+    return render_template('index.html')
+

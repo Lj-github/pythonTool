@@ -30,4 +30,7 @@ def index_Iframe():
 def index2():
     return render_template('index2.html')
 
+@app.route('/uploadPhoto/', methods=['GET'])
+def uploadPhoto():
+    return render_template('uploadPhoto.html')
 
