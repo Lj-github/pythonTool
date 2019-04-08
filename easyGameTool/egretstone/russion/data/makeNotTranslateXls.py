@@ -21,12 +21,12 @@ translateDir = '/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/
 translateTitleList = ['Id', 'colName', 'Chinese', 'English', 'Russion', 'French', 'Germany', 'TraditionalChinese',
                       'Vietnam']
 '''                     0      1         2          3         4        5        6          7                   8'''
-translateIDx = 2
+translateIDx = 4
 
 beTranslateDir = '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/pika_foreign/translateResource/needBeTranslate'
 beTranslateDir = '/Users/admin/Desktop/pikachu俄文版/更新/POK_Translation_2018-12-07/needTranslateData'  # 配置好  路径  就行  能直接  执行
 # beTranslateDir = '/Users/songbin/Downloads/needBeTranslate/needBeTranslate'
-# beTranslateDir = '/Users/songbin/Downloads/Language/德语/joyfun/beTranslateGermany_0921/dataTranslated'
+beTranslateDir = '/Users/admin/Desktop/石器俄服/ww'
 beTranslateDir = '/Users/admin/Desktop/石器俄服/石器俄语完成0220'
 '''表名，sheet，ID，中文，英文，俄文，法文,德文，繁文,越南'''
 beTranslateIdx = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -47,8 +47,7 @@ dataPthList = {
     #     '/Users/songbin/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512-绿洲'
     # ],
     2: ['/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/RussianStone/peizhi'],
-    3: [
-        '/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512'],
+    3: ['/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/EnglishResources/资源表0512'],
     4: ['/Users/admin/Documents/ljworkspace/local/egret/design/stone_age/RussianStone/peizhi'],
     5: ['/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/FrenchResources/资源表0512'],
     # 5:['/Users/admin/Documents/ljworkspace/local/cocos/assets/pikachu/sanguo/aiweiyou_pokmon/GermanyResources/资源表0512'],
@@ -173,6 +172,8 @@ def makeSheepInfo(dataxlsName, filename):
                     languageName = sheetnewTranslate.cell_value(0, j)
                     '''有语言校对时候，可能会出现同一语言两列，而校对后的一列可能没有列名'''
                     if not languageName:
+                        languageName = translateTitleList[translateIDx]
+                    if j == 4:
                         languageName = translateTitleList[translateIDx]
 
                     # print('languageName:',languageName)

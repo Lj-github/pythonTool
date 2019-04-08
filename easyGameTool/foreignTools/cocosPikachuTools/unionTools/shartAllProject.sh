@@ -5,7 +5,7 @@ proFIle=/Users/admin/Documents/ljworkspace/local/python/pythonTool/easyGameTool/
 open -a Terminal.app $proFIle/shartAllProject1.sh
 open -a Terminal.app $proFIle/shartAllProject2.sh
 open -a Terminal.app $proFIle/shartAllProject3.sh
-open -a Terminal.app $proFIle/shartAllProject4.sh
+#open -a Terminal.app $proFIle/shartAllProject4.sh
 
 
 
