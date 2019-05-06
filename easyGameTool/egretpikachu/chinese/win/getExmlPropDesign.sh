@@ -4,7 +4,7 @@ if [ -z "${path}" ]
 then
 echo "请输入exml文件的路径"
 else
-jsPath='D:\work\easygame\client\SmartPikachu\other\exmlTest'
+jsPath='D:\work\easygame\client\SmartPikachu_update\other\exmlTest'
 cd $jsPath
 node $jsPath/exmlTest.js $path
 cat $jsPath/output/varDefine.txt

@@ -28,13 +28,49 @@ test2
 
 
     var idx = 0
+
     //id=4545&ff=5555&query=/mydict
+    let dd = {}
+    dd.pager = {}
+    dd.pager.limit = 0// {limit: 0, pagable: true, page: 0}
+    /*param: {"meterCycle": "A01_2017-03-28", rteCd: "100005"},
+    sorter: {orders: {direction: "ASC", property: "string"}}*/
+
     function post(id, cont) {
         $.ajax({
             type: 'POST',
-            url:  "http://192.168.1.214:5001/res/battle/",//"http://192.168.1.214:9613/mydict",
-            data: {"forms0":{"fType":1,"hero":[{"gwID":0,"uID":2106}]},"forms1":{"fType":2,"hero":[{"gwID":40001,"uID":0},{"gwID":50001,"uID":0},{"gwID":60001,"uID":0}]},"skills":[]},
-            dataType: "jsonp",
+            // url:  "http://172.27.47.27:8003/maindata/app/rets",//"http://192.168.1.214:9613/mydict",=&=
+            // data:{meterReaderId: '100058',meterCycle:'A01_2017-03-28'},
+            contentType: "application/json; charset=utf-8",
+            url: 'http://127.0.0.1:3333/case/ajaxPost',//"http://172.27.47.27:8003/maindata/app/ret/detail",//"http://192.168.1.214:9613/mydict",=&=
+            /*data: {
+                meterCycle: 'A01_2017-03-28',
+                rteCd: '100005',
+                pageNo: 1
+            },*/
+
+
+            data: JSON.stringify({
+                "pager": {
+                    "limit": 0,
+                    "pagable": true,
+                    "page": 0
+                },
+                "param": {
+                    "meterCycle": "A01_2017-03-28",
+                    "rteCd": "100005"
+                },
+                "sorter": {
+                    "orders": [
+                        {
+                            "direction": "ASC",
+                            "property": "string"
+                        }
+                    ]
+                },
+                query:"/maindata/app/ret/detail"
+            }),
+            dataType: "json",
             success: function (data) {
                 console.log(data)
             },
@@ -42,12 +78,13 @@ test2
             complete: function (XHR, TS) {
                 XHR = null
             },
-            error:function (e) {
+            error: function (e) {
                 console.log("失败")
                 console.log(e)
             }
         });
     }
+
     post(0, all[0])
 
 
@@ -60,29 +97,29 @@ test2
     var old = 0
     var timer
     var count = 0
-   /* var begin = function () {
-        timer = setInterval(function () {
-            all.push(getStr())
-            count++
-            if (!isBegin) {
-                post(0, all[0])
-            }
-            if (count % 60 === 0) {
-                console.log("运行时间 " + new Date().getSeconds() + " 秒")
-                console.log("数量差值 " + (count - old) + " 次数")
-                old = count
-            }
-        }, 1000 / FPS)
-    }
-    var stop = function () {
-        clearInterval(timer)
-    }*/
+    /* var begin = function () {
+         timer = setInterval(function () {
+             all.push(getStr())
+             count++
+             if (!isBegin) {
+                 post(0, all[0])
+             }
+             if (count % 60 === 0) {
+                 console.log("运行时间 " + new Date().getSeconds() + " 秒")
+                 console.log("数量差值 " + (count - old) + " 次数")
+                 old = count
+             }
+         }, 1000 / FPS)
+     }
+     var stop = function () {
+         clearInterval(timer)
+     }*/
 
     /**
      *  添加 空格
      */
 
-    $("#text").html("0"+'&nbsp;')
+    $("#text").html("0" + '&nbsp;')
 
 
 </script>
