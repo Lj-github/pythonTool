@@ -1,6 +1,21 @@
+
+
+import sys
+import os
+current_directory = os.path.dirname(os.path.abspath(__file__))
+root_path = os.path.abspath(os.path.dirname(current_directory) + os.path.sep + ".")
+sys.path.append(root_path)
+
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
+
+
+
 import unit.xml.layaFairyGuiUIRead as xmlTool
 import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as Et
-import sys
 
 fairyGuiProFile = 'F:/liujiang/svn/trunk/meishu/ProjectUI/'
 
