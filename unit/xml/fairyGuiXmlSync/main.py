@@ -1,25 +1,15 @@
 
 
-import sys
-import os
-current_directory = os.path.dirname(os.path.abspath(__file__))
-root_path = os.path.abspath(os.path.dirname(current_directory) + os.path.sep + ".")
-sys.path.append(root_path)
 
 import sys
 import os
-curPath = os.path.abspath(os.path.dirname(__file__))
-rootPath = os.path.split(curPath)[0]
-sys.path.append(rootPath)
-
-
-
+#需要添加项目的绝对路径 
+sys.path.append('C:\\Users\\Administrator\\Desktop\\work\\pythonTool') 
 import unit.xml.layaFairyGuiUIRead as xmlTool
 import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as Et
-
 fairyGuiProFile = 'F:/liujiang/svn/trunk/meishu/ProjectUI/'
-
-
+print("run")
+sys.exit(0)
 def isPackAgeXml(path):
     return path.find('package.xml') > -1
 
@@ -60,7 +50,8 @@ def checkErrorID(xmlFile, localPkg):
                     else:
                         print(xmlFile, inFileName, '错误！')
                         # 修复一下
-                        resetFairyGuiXml(xmlFile, node, localPkg, realIDList[0])
+                        resetFairyGuiXml(
+                            xmlFile, node, localPkg, realIDList[0])
 
                 if len(realIDList) == 0:
                     print('path ' + xmlFile + '   ' + inFileName + '没有对应id')
@@ -69,8 +60,6 @@ def checkErrorID(xmlFile, localPkg):
         if node.tag == 'loader':
             # 如果是装载器  url  =ui:// +  pkg + id  <url="ui://qdktke93nmey5g">
             # 目前 出问题的 应该比较少
-
-
 
             continue
 
