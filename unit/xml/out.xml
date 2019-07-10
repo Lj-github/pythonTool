@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component adaptationTest="FitHeightAndSetCenter" anchor="true" pivot="0.5,0.5" size="1280,669">
+    <displayList>
+        <image fileName="Image/Background/BgDialog.png" id="n0_kv0a" name="rootPos" pkg="wdjyok3p" size="835,592"
+               src="uh3194" xy="222,24">
+            <relation sidePair="center-center,middle-middle" target=""/>
+        </image>
+        <image fileName="Image/Background/BgCommonTitle.png" id="n1_kv0a" name="n35" pkg="wdjyok3p" size="835,56"
+               src="h9jvbe" xy="222,26">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </image>
+        <image alpha="0.3" fileName="Image/Decorate/DecLuminous.png" id="n28_kv0a" name="n28" pkg="wdjyok3p"
+               scale="0.5,0.5" size="1182,384" src="uh315g" xy="335,1">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </image>
+        <image alpha="0.22" fileName="Image/Decorate/DecDecorative.png" id="n27_kv0a" name="n27" pkg="wdjyok3p"
+               scale="0.3,0.3" src="uh315e" xy="443,115">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </image>
+        <text color="#f7f0bc" fontSize="28" id="n2_kv0a" name="lblTitle" size="117,36" text="名城详情" xy="580,36">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <image alpha="0.6" fileName="Image/Background/Bg2Level.png" id="n29_kv0a" name="n29" pkg="wdjyok3p"
+               size="798,227" src="pe1jb7" xy="240,292">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </image>
+        <component fileName="Component/Button/ButtonClose.xml" id="n3_kv0a" name="btnClose" pkg="wdjyok3p" src="jzd6bk"
+                   xy="895,26">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </component>
+        <text color="#fffefe" fontSize="18" id="n4_kv0a" name="n36" size="59,25" text="任期：" xy="675,146">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <component fileName="Component/Button/ButtonScaleNormal.xml" id="n5_kv0a" name="btnBuild" pkg="wdjyok3p"
+                   size="160,44" src="tce9ay" xy="568,554">
+            <Button icon="ui://wdjyok3pbou6a5" selectedIcon="ui://wdjyok3pbou6a5" selectedTitle="重  建" title="重  建"
+                    titleColor="#fffefe" titleFontSize="22"/>
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </component>
+        <text color="#3fb302" fontSize="18" id="n6_kv0a" name="lblProp" pivot="0.5,0.5" size="346,25"
+              text="名城城主每天21点可邮件领取2份物资奖励" xy="466,493">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n7_kv0a" name="lblTeamName" pivot="0.5,0.5" size="383,25"
+              text="占领名城后，国家所有玩家每天可征收下列物资" xy="447,302">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <component fileName="Component/Button/ButtonScaleNormal.xml" id="n8_kv0a" name="btnChat" pkg="wdjyok3p"
+                   size="160,44" src="tce9ay" xy="332,554">
+            <Button icon="ui://wdjyok3pbou6a5" selectedIcon="ui://wdjyok3pbou6a5" selectedTitle="私  聊" title="私  聊"
+                    titleColor="#fffefe" titleFontSize="22"/>
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </component>
+        <list defaultItem="ui://wdjyok3psk0iah" id="n11_kv0a" layout="row" name="listItem" overflow="scroll"
+              scroll="horizontal" size="702,147" xy="288,335">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </list>
+        <text color="#fffefe" fontSize="18" id="n17_kv0a" name="n1" size="47,25" text="州牧:" xy="675,110">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n18_kv0a" name="n3" size="59,25" text="队伍：" xy="675,182">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n19_kv0a" name="n4" size="95,25" text="城防兵力：" xy="675,218">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n20_kv0a" name="lblRoleName" size="43,25" text="无    " xy="754,110">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n21_kv0a" name="lblCost" size="41,25" text="徐州" xy="486,247">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n22_kv0a" name="lblTeamCount" size="29,25" text="00" xy="751,182">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n23_kv0a" name="lblSolderCount" size="34,25" text="0/1" xy="785,217">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <component fileName="Component/Button/ButtonScaleNormal.xml" id="n26_kv0a" name="btnSupplement" pkg="wdjyok3p"
+                   size="160,44" src="tce9ay" xy="804,554">
+            <Button icon="ui://wdjyok3pbou6aa" selectedIcon="ui://wdjyok3pbou6aa" selectedTitle="补充城防" title="补充城防"
+                    titleColor="#fffefe" titleFontSize="22"/>
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </component>
+        <text color="#fffefe" fontSize="18" id="n34_kv0a" name="n444" size="59,25" text="免战：" xy="675,253">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n35_kv0a" name="lblAvoidWar" size="34,25" text="1天" xy="754,255">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <text color="#fffefe" fontSize="18" id="n36_kv0a" name="lblTime" size="89,25" text="00:00:00" xy="753,146">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </text>
+        <loader id="n37_kv0a" name="n37" size="115,117" xy="446,125">
+            <relation sidePair="right-left,bottom-top" target="n0_kv0a"/>
+        </loader>
+    </displayList>
+</component>

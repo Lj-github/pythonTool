@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1280,640" pivot="0.5,0.5" anchor="true" adaptationTest="FitSize">
+  <displayList>
+    <image id="n0_bebg" name="rootPos" src="uh3194" fileName="Image/Background/BgDialog.png" pkg="wdjyok3p" xy="222,10" size="835,620">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n2_bebg" name="n35" src="h9jvbe" fileName="Image/Background/BgCommonTitle.png" pkg="wdjyok3p" xy="223,11" size="835,56">
+      <relation target="n0_bebg" sidePair="right-left,bottom-top"/>
+    </image>
+    <text id="n3_bebg" name="lblTitle" xy="581,21" size="117,36" fontSize="28" color="#f7f0bc" text="选择队伍">
+      <relation target="n0_bebg" sidePair="right-left,bottom-top"/>
+    </text>
+    <component id="n4_bebg" name="btnClose" src="jzd6bk" fileName="Component/Button/ButtonClose.xml" pkg="wdjyok3p" xy="896,11">
+      <relation target="n0_bebg" sidePair="right-left,bottom-top"/>
+    </component>
+    <text id="n9_bebg" name="n36" xy="415,359" size="95,25" fontSize="18" color="#b6c1de" text="出征消耗："/>
+    <component id="n10_bebg" name="btnSetOut" src="tce9ay" fileName="Component/Button/ButtonScaleNormal.xml" pkg="wdjyok3p" xy="812,532" size="160,44" grayed="true">
+      <relation target="n0_bebg" sidePair="right-left,bottom-top"/>
+      <Button title="出  证" titleColor="#fffefe" titleFontSize="22" icon="ui://wdjyok3pbou6a5" selectedTitle="出  征" selectedIcon="ui://wdjyok3pbou6a5"/>
+    </component>
+    <text id="n11_bebg" name="lblProp" xy="641,492" size="185,25" fontSize="18" color="#fe0000" text="敌情难测，请斟酌行事"/>
+    <text id="n12_bebg" name="lblTeamName" xy="407,138" size="145,27" fontSize="20" color="#b66923" text="小乔小姐的队伍"/>
+    <component id="n15_bebg" name="btnSupplement" src="tce9ay" fileName="Component/Button/ButtonScaleNormal.xml" pkg="wdjyok3p" xy="457,537" size="160,44" grayed="true">
+      <Button title="补  兵" titleColor="#fffefe" titleFontSize="22" icon="ui://wdjyok3pbou6a5" selectedTitle="补  兵" selectedIcon="ui://wdjyok3pbou6a5"/>
+    </component>
+    <list id="n16_bebg" name="listTeam" xy="232,129" size="152,488" overflow="scroll" defaultItem="ui://wdjyok3psk0iah">
+      <relation target="n0_bebg" sidePair="right-left,bottom-top"/>
+    </list>
+    <list id="n17_bebg" name="listProp" xy="238,72" size="804,55" layout="row" overflow="hidden" scroll="horizontal" colGap="6" defaultItem="ui://qdktke93bebg2" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <list id="n18_bebg" name="listHero" xy="430,174" size="621,130" layout="row" overflow="scroll" scroll="horizontal" defaultItem="ui://wdjyok3psk0iah"/>
+    <text id="n19_bebg" name="lblBpDesc" xy="604,139" size="59,25" fontSize="18" color="#b6c1de" text="实力："/>
+    <text id="n20_bebg" name="n" xy="777,139" size="59,25" fontSize="18" color="#b6c1de" text="兵力："/>
+    <text id="n21_bebg" name="lblBp" xy="659,139" size="53,25" fontSize="18" color="#b6c1de" text="0000"/>
+    <text id="n22_bebg" name="lblArmCount" xy="848,139" pivot="1,0" size="65,25" fontSize="18" color="#3fb302" text="00000"/>
+    <text id="n23_bebg" name="lblArmCountAll" xy="913,139" size="71,25" fontSize="18" color="#b6c1de" text="/00000"/>
+    <text id="n24_bebg" name="n1" xy="415,323" size="77,25" fontSize="18" color="#b6c1de" text="目的地："/>
+    <text id="n25_bebg" name="n3" xy="415,395" size="95,25" fontSize="18" color="#b6c1de" text="行军时间："/>
+    <text id="n26_bebg" name="n4" xy="415,431" size="95,25" fontSize="18" color="#b6c1de" text="出征队伍："/>
+    <text id="n27_bebg" name="lblpos" xy="587,323" size="77,25" fontSize="18" color="#b6c1de" text="目的地："/>
+    <text id="n28_bebg" name="lblCost" xy="647,362" size="29,25" fontSize="18" color="#b6c1de" text="00"/>
+    <text id="n29_bebg" name="lblTime" xy="590,397" size="89,25" fontSize="18" color="#b6c1de" text="00:00:00"/>
+    <text id="n30_bebg" name="lblTimeCount" xy="592,429" size="34,25" fontSize="18" color="#b6c1de" text="0/1"/>
+    <text id="n32_bebg" name="lblState" xy="392,185" size="33,92" fontSize="22" color="#ffffff" autoSize="none" text="空闲中"/>
+    <image id="n33_g75t" name="n33" src="f2e7bs" fileName="Image/Icon/IconPropertyRations_sm.png" pkg="wdjyok3p" xy="590,349"/>
+  </displayList>
+</component>

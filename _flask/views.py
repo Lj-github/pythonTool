@@ -34,3 +34,9 @@ def index2():
 def uploadPhoto():
     return render_template('uploadPhoto.html')
 
+
+
+@app.route('/data/', methods=['GET'])
+def data():
+    return render_template('data.html')
+
