@@ -8,8 +8,6 @@ sys.path.append('C:\\Users\\Administrator\\Desktop\\work\\pythonTool')
 import unit.xml.layaFairyGuiUIRead as xmlTool
 import easyGameTool.foreignTools.cocosPikachuTools.ExcelTools as Et
 fairyGuiProFile = 'F:/liujiang/svn/trunk/meishu/ProjectUI/'
-print("run")
-sys.exit(0)
 def isPackAgeXml(path):
     return path.find('package.xml') > -1
 
