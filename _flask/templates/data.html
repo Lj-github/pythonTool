@@ -12,6 +12,12 @@
 
 
 <script>
+    var gt = {}
+    gt.isIOS = function () {
+        var u = window.navigator.userAgent
+        return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    }
+
     var vConsole = new VConsole();
     console.log('init vConsole');
 
@@ -42,6 +48,7 @@
     var dtlInput = document.querySelector('#timeLocalxjrq')
     var time = tetsts + tzoffset
     dtlInput.value = new Date(time).Format(timeFormatLocalTimeDay)
+    console.log('gt.isIOS()', gt.isIOS())
 
 </script>
 </body>
