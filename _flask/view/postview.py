@@ -5,7 +5,11 @@ from _flask import app
 from flask import jsonify
 import json
 from _flask.lib import lzstring
+
 x = lzstring.LZString()
+
+import _flask.cure.UtilTools as UtilTools
+
 
 @app.route('/post/', methods=['POST'])
 def postTest():
@@ -20,7 +24,7 @@ def postTest():
 
 @app.route('/mydict', methods=['GET', 'POST'])
 def mydict():
-    id =  request.values['id']
+    id = request.values['id']
     ff = request.values['ff']
     d = {'name': 'xmr', 'age': 18}
     return jsonify(d)
@@ -29,8 +33,8 @@ def mydict():
 @app.route('/postSaveTxt/', methods=['POST'])
 def postSaveTxt():
     username = request.values['username']
-    #content = x.decompress(request.values['content'])
-    content =request.values['content']
+    # content = x.decompress(request.values['content'])
+    content = request.values['content']
     print('username  ' + username)
     with open("static/txt/" + username, 'w') as f:
         f.write(content)
@@ -38,9 +42,12 @@ def postSaveTxt():
     loader['dd'] = 'success'
     return json.dumps(loader), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
+
 basedir = '/Users/admin/Documents/ljworkspace/local/python/pythonTool/_flask'
 
-@app.route('/postSaveImg', methods=['POST'])#,strict_slashes=False
+
+# 上传图片
+@app.route('/postSaveImg', methods=['POST'])  # ,strict_slashes=False
 def postSaveImg():
     img = request.files.get('photo')
     username = request.form.get("name")
@@ -50,3 +57,13 @@ def postSaveImg():
     print('上传头像成功，上传的用户是：' + username)
     return render_template('index.html')
 
+
+# 获取图片 base64 | 或者 把别的服务器上的图片 下载到自己的服务器  为了跨域
+@app.route('/saveImg', methods=['GET'])  # ,strict_slashes=False
+def saveImg():
+    url = request.values['url']
+    localUrl = UtilTools.loadImage(url)
+    print("下载到本地的图片url" + localUrl)
+    loader = {}
+    loader["localUrl"] = localUrl
+    return json.dumps(loader), 200, {'Content-Type': 'application/json; charset=utf-8'}
