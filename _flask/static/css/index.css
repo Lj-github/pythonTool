@@ -1,0 +1,83 @@
+
+#Header {
+    height: 3.13rem;
+    color: rgba(255, 255, 255, 1);
+}
+
+#Button_SyjhFJ {
+    min-height: 2.2rem;
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 67%;
+
+}
+
+#Slider_QSejBd {
+    left: 0.00rem;
+    top: 3.75rem;
+}
+
+#ListView_xsDksK {
+    right: 0rem;
+    top: 3.2rem;
+    width: 6rem;
+    border-style: none;
+    border-color: rgba(255, 0, 0, 1);
+    border-radius: 1px;
+    font-size: 0.9rem;
+    position: fixed;
+    z-index: 999999999;
+}
+
+#ViewModel {
+    font-size: .2rem;
+}
+
+#Button_BZabwO {
+    min-height: 2.2rem;
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    top: 80%;
+}
+
+.icon {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 3rem;
+}
+
+.icon .logo {
+    width: 20.5%;
+    float: left;
+    margin: 0 2.2%;
+    text-align: center;
+    font-size: .9rem;
+    margin-top: 1.4rem;
+    font-family: SimHei;
+    font-weight: 400;
+    color: rgba(112, 112, 112, 1);
+}
+
+.logo > img :active {
+    top: 3px;
+}
+
+.imgs {
+    width: 4.1875rem;
+    height: 4.1875rem;
+}
+
+.clear {
+    clear: both;
+}
+
+#Text_version {
+    top: 18rem;
+    left: 58%;
+    font-size: 0.8125rem;
+    color: rgb(236, 13, 94);
+}

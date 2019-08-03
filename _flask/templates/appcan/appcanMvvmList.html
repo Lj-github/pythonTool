@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 47px  ;">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/ui-base.css">
+    <link rel="stylesheet" href="../../static/css/ui-box.css">
+    <link rel="stylesheet" href="../../static/css/ui-color.css">
+    <style>
+        #ContentFlexVer {
+
+        }
+    </style>
+
+</head>
+<body style="overflow-y: auto">
+
+
+<div class="bc-bg ub ub-ver ub-ac ub-con " data-control="FLEXBOXVER" id="ContentFlexVer" style="overflow-y: auto">
+    <div class="ub ub-ver ub-fh" id="sortList">
+        <div class="uinn-4a" data-bind="collection:$collection" id="itemView">
+            <div mvvm-scope class="listItem">
+                <div class="bc-border c-wh umar-at1" id="sortListis">
+                    <ul class="ub t-bla ub-ac uinn-pFS1" data-bind="classes:{'bgWight':id}">
+                        <span></span>
+                        <li class="ub-f1 ut-s spans" data-bind="text:item">
+
+                        </li>
+                    </ul>
+                    <ul class="ub t-bla ub-ac uinn-pFS1" data-bind="classes:{'bgWight':id}">
+                        <li class="ub-f1 ut-s " data-bind="text:place">
+
+                        </li>
+                    </ul>
+                    <ul class="ub t-bla ub-ac uinn-pFS1" data-bind="classes:{'bgWight':id}">
+                        <li class="ub-f1 ut-s " data-bind="text:biaohao">
+
+                        </li>
+                        <li class="lis-sw ub-img arrow fa fa-angle-right angle-right"></li>
+                    </ul>
+                    <ul class="ub t-bla ub-ac uinn-pFS1" data-bind="classes:{'bgWight':id}">
+                        <li class="ub-f1 ut-s " data-bind="text:position">
+
+                        </li>
+                    </ul>
+                    <ul class="ub t-bla ub-ac uinn-pFS1" data-bind="classes:{'bgWight':id}">
+                        <li class="ub-f1 ut-s " data-bind="text:chuchangbiaohan">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="uinn-4b"></div>
+    </div>
+</div>
+<script src="../../static/js/appcan.js">
+</script>
+<script src="../../static/js/appcan.control.js">
+</script>
+<script src="../../static/js/appcan.scrollbox.js">
+</script>
+<script src="../../static/js/appcan.tab.js">
+</script>
+<script src="../../static/js/template.import.js">
+</script>
+
+
+<script>
+    let list = [
+        // { // ID 必须不一样 才能 出来
+        //     id: 0,
+        //     item: '北京出入境检验检疫局机关服务中心',
+        //     place: "用气地址：朝阳区朝外大街人寿大厦地下一层",
+        //     biaohao: '9000000211',
+        //     isDone: '已完成',
+        //     position: '安装位置：2#锅炉',
+        //     chuchangbiaohan: '出厂编号/卡控条形码：10000001'
+        // }, {
+        //     "id": 1,
+        //     item: '北京出入境检验检疫局机关服务中心',
+        //     place: "用气地址：朝阳区朝外大街人寿大厦地下一层",
+        //     biaohao: '9000000212221',
+        //     isDone: '未查表',
+        //     position: '安装位置：2#锅炉',
+        //     chuchangbiaohan: '出厂编号/卡控条形码：100000022'
+        // }, {
+        //     "id": 2,
+        //     item: '开始',
+        //     place: "用气地址：朝阳区朝外大街人寿大厦地下一层",
+        //     biaohao: '9000000212221',
+        //     isDone: '未提交',
+        //     position: '安装位置：2#锅炉',
+        //     chuchangbiaohan: '出厂编号/卡控条形码：10000003'
+        // }
+
+    ]
+    for (let i = 0; i < 80; i++) {
+        list.push({
+            "id": i,
+            item: '开始' + i,
+            place: "用气地址：朝阳区朝外大街人寿大厦地下一层" + i,
+            biaohao: '9000000212221' + i,
+            isDone: '未提交' + i,
+            position: '安装位置：2#锅炉' + i,
+            chuchangbiaohan: '结束' + i
+        })
+    }
+    let begin = 0
+
+    function getData() {
+        return list.slice(begin, begin + 7)
+    }
+
+    /*mvvm*/
+    var Service = new MVVM.Service({
+        pretreatment: function (data, option) {
+            return data;
+        },
+        dosuccess: function (data, option) {
+            return data;
+        },
+        doerror: function (e, err, option) {
+            return err;
+        },
+        validate: function (data, option) {
+            return data;
+        },
+        changeData: function (data) {
+            this.dosuccess(data)
+        },
+        ajaxCall: function (data, option) {
+            var self = this;
+            option.success(self.dosuccess(getData(), option));
+        }
+    });
+    var Model_Collection = MVVM.Model.extend({
+        defaults: {},
+        //在model创建后执行的方法
+        initialize: function () {
+        },
+        computeds: {},
+        sync: function (method, model, options) {
+            switch (method) {
+                case "create":
+                    break;
+                case "update":
+                    break;
+                case "patch":
+                    break;
+                case "delete":
+                    break;
+                case "read":
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    var Collection = new (MVVM.Collection.extend({
+        initialize: function () {
+            return;
+        },
+        parse: function (data) {
+            return data;
+        },
+        model: Model_Collection,
+        sync: function (method, collection, options) {
+            switch (method) {
+                case "read":
+                    Service.request({}, options);
+                    break;
+                case "reset":
+                    console.log("reset")
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }))();
+    var ViewModel = new (MVVM.ViewModel.extend({
+        el: "#sortList",
+        collection: Collection,
+        initialize: function () {
+            this.collection.fetch({reset: true})
+            return
+        },
+        itemEvents: {
+            "tap": function (ev, param) {
+                var idx = _.indexOf(_.pluck(Collection.models, 'id'), this.model.get("id"))
+                console.log("index = > " + idx)
+            }
+        }
+    }))();
+    ViewModel.collection.fetch()
+    var maxh = list.length * parseInt($($(".listItem")[0]).css("height").replace("px", ''))
+    $("#sortList").css("height", maxh + "px")
+    var w = document.getElementById("ContentFlexVer");
+    w.onscroll = function (e) {//为页面添加页面滚动监听事件
+        let itemHeight = parseInt($($(".listItem")[0]).css("height").replace("px", ''))
+        var scrollTop = $(w).scrollTop()
+        begin = Math.floor(scrollTop / itemHeight)
+        ViewModel.collection.fetch()
+        $("#itemView").css("top", begin * itemHeight + "px")
+    }
+
+
+    /* var script = document.createElement('script');
+     script.src = "../../static/js/vconsole.min.js";
+     document.body.appendChild(script);
+     script.onload = function () {
+         try {
+             var vConsole = new VConsole();
+             console.log('init vConsole');
+             window.__my__init__Vconsole__ = vConsole
+         } catch (e) {
+             console.log(e);
+         }
+     }*/
+
+
+</script>
+
+
+</body>
+</html>

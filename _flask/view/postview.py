@@ -50,3 +50,10 @@ def postSaveImg():
     print('上传头像成功，上传的用户是：' + username)
     return render_template('index.html')
 
+
+
+
+@app.route('/appcanMvvmList', methods=['GET'])#,strict_slashes=False
+def appcanMvvmList():
+    return render_template('appcan/appcanMvvmList.html')
+
