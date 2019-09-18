@@ -49,4 +49,4 @@ def CalcSha1(filepath):
 
 
 
-print(CalcSha1("***.json"))
+#print(CalcSha1("***.json"))

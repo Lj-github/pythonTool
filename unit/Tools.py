@@ -12,20 +12,36 @@ import datetime
     获取文件路径下所有文件列表 list
 '''
 
-def GetFileList(dir, fileList = []):
+
+def GetFileList(dir, fileList=[]):
     newDir = dir
     if os.path.isfile(dir):
-        fileList.append(dir.decode('utf-8'))
+        fileList.append(dir)  # .decode('utf-8') python3 不用
     elif os.path.isdir(dir):
         for s in os.listdir(dir):
-            newDir=os.path.join(dir,s)
+            newDir = os.path.join(dir, s)
             GetFileList(newDir, fileList)
     return fileList
+
+
+def GetFileListByType(dir, fType=[], fileList=[]):
+    newDir = dir
+    if os.path.isfile(dir):
+        fpath, fname = os.path.split(dir)
+        if (fname.split(".").pop() in fType) and fname[0] != ".":
+            fileList.append(dir)
+    elif os.path.isdir(dir):
+        for s in os.listdir(dir):
+            newDir = os.path.join(dir, s)
+            GetFileListByType(newDir, fType, fileList)
+    return fileList
+
 
 '''
     判断是否number
 
 '''
+
 
 def isNumber(str5):
     try:
@@ -33,6 +49,8 @@ def isNumber(str5):
         True
     except ValueError:
         return False
+
+
 '''
     创建文件夹
 '''
@@ -47,10 +65,11 @@ def mkdir(path):
         return True
     else:
         return False
+
+
 '''
     复制文件，不需要考虑路径是否存在  不存在会直接创建
 '''
-
 
 
 def copyfile(srcfile, dstfile):
@@ -65,9 +84,11 @@ def copyfile(srcfile, dstfile):
         shutil.copyfile(srcfile, dstfile)
         print("copy %s -> %s" % (srcfile, dstfile))
 
+
 '''
     
 '''
+
 
 def isNotIntAndNotFloat(num):
     num = str(num)
@@ -84,9 +105,9 @@ def isNotIntAndNotFloat(num):
     获取当前文件夹 目录
 '''
 
-def getLocalPath():
-    return  os.path.realpath(__file__)
 
+def getLocalPath():
+    return os.path.realpath(__file__)
 
 
 def get_js(jsFile):
@@ -98,30 +119,37 @@ def get_js(jsFile):
         line = f.readline()
     return htmlstr
 
+
 '''
     获取当前时间字符串
 '''
+
 
 def getDataStr():
     today = datetime.datetime.now()
     ISOFORMAT = '%Y%m%d'
     return today.strftime(ISOFORMAT)[2:] + "%s" % today.hour + "%s" % today.second
 
+
 '''
     删除文件夹下所有文件 
 '''
 
+
 def del_file(path):
     for i in os.listdir(path):
         path_file = os.path.join(path, i)
-        if os.path.isfile(path_file) :
+        if os.path.isfile(path_file):
             # 可以在此  做限制
             os.remove(path_file)
         else:
             del_file(path_file)
+
+
 '''
     获取文件中的 字符所在行 并返回行
 '''
+
 
 def getStrFromFile(str, file):
     f = io.open(file, "r", encoding='utf-8')
@@ -135,11 +163,13 @@ def getStrFromFile(str, file):
     f.close()
     return findStr
 
+
 '''
     判断文件中是否包含字符串
 '''
 
-def isInclodeStrFromPath(file,str):
+
+def isInclodeStrFromPath(file, str):
     f = io.open(file, "r", encoding='utf-8')
     line = f.readline()
     while line:
@@ -153,8 +183,9 @@ def isInclodeStrFromPath(file,str):
 
 '''  gz 压缩文件夹下所有文件  '''
 
+
 def makeGzFile(filePath):
-    allFileNeedGzList = GetFileList(filePath,[])
+    allFileNeedGzList = GetFileList(filePath, [])
     for pgz in allFileNeedGzList:
         gzSh = "gzip -c " + pgz + " > " + pgz + ".gz"
         os.system(gzSh)
