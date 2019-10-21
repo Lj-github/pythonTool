@@ -3,17 +3,20 @@
 
 import xlrd
 from xlwt import Workbook
+
 '''
     excel 转list
 '''
+
+
 def excelToList(file):
     allTable = {}
     if file:
         print("<------  " + "file" + file + " begin search  " + " ------>")
         table_translate = xlrd.open_workbook(file)
         count = len(table_translate.sheets())
-        allName= table_translate.sheet_names()
-        for ins in range(0,count):
+        allName = table_translate.sheet_names()
+        for ins in range(0, count):
             allList = []
             sheet_translate = table_translate.sheet_by_name(allName[ins])
             nrows_translate = sheet_translate.nrows
@@ -21,18 +24,20 @@ def excelToList(file):
             for j in range(nrows_translate):
                 translate = sheet_translate.row_values(j, 0, ncols_translate)
                 arrayitem = []
-                for st in translate :
+                for st in translate:
                     arrayitem.append(st)
                 allList.append(arrayitem)
             allTable[allName[ins]] = allList
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allTable
+
+
 '''
     excel 里面的 sheet  转list
 '''
 
 
-def excelToListByFileAndSheetName(file,sheetName):
+def excelToListByFileAndSheetName(file, sheetName):
     allList = []
     if file and sheetName:
         print("<------  " + "file" + file + " begin search  " + " ------>")
@@ -45,11 +50,12 @@ def excelToListByFileAndSheetName(file,sheetName):
         for j in range(nrows_translate):
             translate = sheet_translate.row_values(j, 0, ncols_translate)
             arrayitem = []
-            for st in translate :
+            for st in translate:
                 arrayitem.append(st)
             allList.append(arrayitem)
     print("<------  " + "file" + file + "  search finesh " + " ------>")
     return allList
+
 
 '''
     AllCCBTabel ： table   {"sheet":[]} 形式  
@@ -57,8 +63,7 @@ def excelToListByFileAndSheetName(file,sheetName):
 '''
 
 
-
-def makeExcel(AllCCBTabel,xlsName):
+def makeExcel(AllCCBTabel, xlsName):
     if AllCCBTabel:
         w = Workbook()
         for AllCCBName in AllCCBTabel:
@@ -81,15 +86,15 @@ def makeExcel(AllCCBTabel,xlsName):
         w.save(xlsName)
 
 
-def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 arr
+def listDeleteRepeatItem(list, index):  # index: [] 需要作为判断的列数 arr
     if not list or not index: return
     news_List = []
     news_index = []
-    for lis in range(0,index.__len__()):
+    for lis in range(0, index.__len__()):
         news_index.append([])
     for id in list:
         isHas = False
-        for i in range(0,index.__len__()):
+        for i in range(0, index.__len__()):
             if id[i] in news_index[i]:
                 isHas = True
         if not isHas:
@@ -99,3 +104,28 @@ def listDeleteRepeatItem(list , index): #index: [] 需要作为判断的列数 a
                 news_index[i].append(id[i])
     return news_List
 
+
+def excelToList(file):
+    allTable = {}
+    if file:
+        print("<------  " + "file" + file + " begin search  " + " ------>")
+        table_translate = xlrd.open_workbook(file)
+        count = len(table_translate.sheets())
+        allName = table_translate.sheet_names()
+        for ins in range(0, count):
+            allList = []
+            # sheet_translate = table_translate.sheet_by_index(ins)
+            sheet_translate = table_translate.sheet_by_name(allName[ins])
+            nrows_translate = sheet_translate.nrows
+            ncols_translate = sheet_translate.ncols
+
+            for j in range(nrows_translate):
+
+                translate = sheet_translate.row_values(j, 0, ncols_translate)
+                arrayitem = []
+                for st in translate:
+                    arrayitem.append(st)
+                allList.append(arrayitem)
+            allTable[allName[ins]] = allList
+    print("<------  " + "file" + file + "  search finesh " + " ------>")
+    return allTable
